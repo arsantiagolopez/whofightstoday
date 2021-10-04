@@ -1,3 +1,4 @@
 import { getFullBodyImage } from "./getFullBodyImage";
+import { scrapeSchedule } from "./scrapeSchedule";
 
-export { getFullBodyImage };
+export { getFullBodyImage, scrapeSchedule };

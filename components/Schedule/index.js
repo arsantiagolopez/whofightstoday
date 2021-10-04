@@ -3,7 +3,7 @@ import React from "react";
 import useSWR from "swr";
 
 const Schedule = () => {
-  const { data } = useSWR("/api/event");
+  const { data } = useSWR("/api/schedule");
 
   return <Flex {...styles.wrapper}></Flex>;
 };
