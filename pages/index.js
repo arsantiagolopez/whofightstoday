@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
+import { Events } from "../components/Events";
 import { Layout } from "../components/Layout";
-import { Schedule } from "../components/Schedule";
 // import useSWR from "swr";
 
 const IndexPage = () => {
@@ -10,11 +10,11 @@ const IndexPage = () => {
   return (
     <>
       <Head>
-        <title>UFC Card tonight, this week.</title>
+        <title>UFC Card Tonight, This Week.</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Schedule />
+        <Events />
       </Layout>
     </>
   );

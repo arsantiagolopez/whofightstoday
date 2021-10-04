@@ -2,13 +2,13 @@ import { Flex } from "@chakra-ui/react";
 import React from "react";
 import useSWR from "swr";
 
-const Schedule = () => {
-  const { data } = useSWR("/api/schedule");
+const Events = () => {
+  const { data } = useSWR("/api/events");
 
   return <Flex {...styles.wrapper}></Flex>;
 };
 
-export { Schedule };
+export { Events };
 
 // Styles
 

@@ -8,18 +8,20 @@ const EventSchema = new Schema(
       type: String,
       required: true,
     },
-    date: {
+    startMain: {
       type: Date,
       required: true,
     },
-    location: {
-      type: String,
-      required: true,
-    },
-    time: {
+    startPrelims: {
       type: Date,
     },
     type: {
+      type: String,
+    },
+    venue: {
+      type: String,
+    },
+    location: {
       type: String,
     },
   },
