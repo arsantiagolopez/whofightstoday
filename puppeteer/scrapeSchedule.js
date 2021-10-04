@@ -16,34 +16,52 @@ const scrapeSchedule = async () => {
     await page.setDefaultNavigationTimeout(0);
     // Go to URL
     await page.goto(url);
-    await page.waitForSelector(".l-container");
+    await page.waitForSelector(".c-card-event--result__info");
+
     // Find list of events
     const events = await page.evaluate(() => {
-      const headlines = Array.from(
+      const fights = Array.from(
         // Parent node with children nodes that each have separate needed info
-        document.querySelectorAll(
-          ".l-listing__item > article > .c-card-event--result__info"
-        ),
+        document.querySelectorAll(".c-card-event--result__info"),
         (node) => {
           const headline = node.querySelector(
             ".c-card-event--result__headline > a"
           ).textContent;
           const mainCardDate = node
-            .querySelector(".c-card-event--result__date")
+            .querySelector("[data-main-card-timestamp]")
             .getAttribute("data-main-card-timestamp");
           const prelimsDate = node
-            .querySelector(".c-card-event--result__date")
+            .querySelector("[data-prelims-card-timestamp]")
             .getAttribute("data-prelims-card-timestamp");
+
+          // Location
+          const locality = node.querySelector(".locality")?.textContent;
+          const area = node.querySelector(".administrative-area")?.textContent;
+          const country = node.querySelector(".country")?.textContent;
+
+          // Location in format "Las Vegas, NV, United States"
+          const format = "#locality#area#country";
+          const location = format
+            .replace(
+              "#locality",
+              typeof locality !== "undefined" ? `${locality}, ` : ""
+            )
+            .replace("#area", typeof area !== "undefined" ? `${area}, ` : "")
+            .replace(
+              "#country",
+              typeof country !== "undefined" ? `${country}` : ""
+            );
 
           return {
             headline,
             mainCardDate,
             prelimsDate,
+            location,
           };
         }
       );
 
-      return headlines;
+      return fights;
     });
 
     // Close the browser

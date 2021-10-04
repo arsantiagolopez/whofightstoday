@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
+    "dev": "next dev -p 1000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "clean": "rm -rf node_modules .next yarn.lock && yarn"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.8",
