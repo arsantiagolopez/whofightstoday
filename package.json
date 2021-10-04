@@ -9,9 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.8",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "axios": "^0.22.0",
+    "framer-motion": "^4",
+    "moment": "^2.29.1",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.8",
     "next": "11.1.2",
+    "puppeteer": "^10.4.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "7.32.0",
