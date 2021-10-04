@@ -33,7 +33,7 @@ const getMonthlySchedule = async (req, res) => {
   const scheduleExists = await checkDatabase();
 
   if (!scheduleExists) {
-    const schedule = await scrapeSchedule()
+    const schedule = await scrapeSchedule();
 
     // @todo: Continue here. Introduce logic to filter only upcoming future events
     console.log("schedule", schedule);
