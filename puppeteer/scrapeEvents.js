@@ -16,13 +16,13 @@ const scrapeEvents = async () => {
     await page.setDefaultNavigationTimeout(0);
     // Go to URL
     await page.goto(url);
-    await page.waitForSelector(".c-card-event--result__info");
+    await page.waitForSelector("[class*='result__info']");
 
     // Find list of events
     const events = await page.evaluate(() => {
       const fights = Array.from(
         // Parent node with children nodes that each have separate needed info
-        document.querySelectorAll(".c-card-event--result"),
+        document.querySelectorAll("[class*='event--result']"),
         (node) => {
           const headline = node.querySelector(
             ".c-card-event--result__headline > a"
