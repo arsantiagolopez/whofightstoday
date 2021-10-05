@@ -7,6 +7,7 @@ const EventSchema = new Schema(
     headline: {
       type: String,
       required: true,
+      unique: true,
     },
     startMain: {
       type: Date,
@@ -25,6 +26,18 @@ const EventSchema = new Schema(
       type: String,
     },
     href: {
+      type: String,
+    },
+    redName: {
+      type: String,
+    },
+    blueName: {
+      type: String,
+    },
+    redImage: {
+      type: String,
+    },
+    blueImage: {
       type: String,
     },
   },

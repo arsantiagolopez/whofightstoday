@@ -22,7 +22,7 @@ const scrapeEvents = async () => {
     const events = await page.evaluate(() => {
       const fights = Array.from(
         // Parent node with children nodes that each have separate needed info
-        document.querySelectorAll("[class*='event--result']"),
+        document.querySelectorAll("article[class*='event--result']"),
         (node) => {
           const headline = node.querySelector(
             ".c-card-event--result__headline > a"
@@ -68,6 +68,28 @@ const scrapeEvents = async () => {
               typeof country !== "undefined" ? `${country}` : ""
             );
 
+          // Images
+          // Find a img with src that contains fighter's uppercase last name
+          const names = headline?.split(" vs ");
+          const redName = names[0];
+          const redLastName =
+            redName?.split(" ")?.length > 1
+              ? redName?.split(" ")[1]
+              : redName?.split(" ")[0];
+          const redLastUppercase = redLastName?.toUpperCase();
+          const redImage = node
+            .querySelector(`img[src*='${redLastUppercase}']`)
+            ?.getAttribute("src");
+          const blueName = names[1];
+          const blueLastName =
+            blueName?.split(" ")?.length > 1
+              ? blueName?.split(" ")[1]
+              : blueName?.split(" ")[0];
+          const blueLastUppercase = blueLastName?.toUpperCase();
+          const blueImage = node
+            .querySelector(`img[src*='${blueLastUppercase}']`)
+            ?.getAttribute("src");
+
           return {
             headline,
             startMain,
@@ -76,12 +98,18 @@ const scrapeEvents = async () => {
             location,
             type,
             href,
+            redName,
+            blueName,
+            redImage,
+            blueImage,
           };
         }
       );
 
       return fights;
     });
+
+    console.log("***** events: ", events);
 
     // Close the browser
     await browser.close();

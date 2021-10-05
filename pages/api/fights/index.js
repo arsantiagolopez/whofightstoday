@@ -9,6 +9,7 @@ const checkDatabase = async () => {
   const { startOfWeek, endOfWeek } = useDates();
 
   try {
+    // If any of the fights older than a week, refetch
     const fights = await Fight.find({
       updatedAt: {
         $gte: startOfWeek.toDate(),
@@ -59,7 +60,6 @@ const getFights = async ({ query }, res) => {
 
   if (!fightsInDb) {
     const scrapedFights = await scrapeCard(href);
-
     const fights = await createFights(scrapedFights);
     return res.status(200).json(fights);
   }
