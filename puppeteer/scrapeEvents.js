@@ -109,8 +109,6 @@ const scrapeEvents = async () => {
       return fights;
     });
 
-    console.log("***** events: ", events);
-
     // Close the browser
     await browser.close();
 

@@ -54,12 +54,12 @@ const createFights = async (fights) => {
  * @returns an array of objects with fight info.
  */
 const getFights = async ({ query }, res) => {
-  const href = query[0];
+  const { event } = query;
 
   const fightsInDb = await checkDatabase();
 
   if (!fightsInDb) {
-    const scrapedFights = await scrapeCard(href);
+    const scrapedFights = await scrapeCard(event);
     const fights = await createFights(scrapedFights);
     return res.status(200).json(fights);
   }

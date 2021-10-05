@@ -1,5 +1,5 @@
-import { getFullBodyImage } from "./getFullBodyImage";
 import { scrapeCard } from "./scrapeCard";
 import { scrapeEvents } from "./scrapeEvents";
+import { scrapeFighterImages } from "./scrapeFighterImages";
 
-export { getFullBodyImage, scrapeEvents, scrapeCard };
+export { scrapeFighterImages, scrapeEvents, scrapeCard };

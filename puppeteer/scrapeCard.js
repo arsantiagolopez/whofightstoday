@@ -2,11 +2,11 @@ import puppeteer from "puppeteer";
 
 /**
  * Scrape the official UFC site for a specific card.
- * @param {string} href - URL for card that includes all the fight info.
+ * @param {string} href - Second part of card URL.
  * @returns an array of objects with fights and info.
  */
 const scrapeCard = async (href) => {
-  const url = `https://ufc.com${href}`;
+  const url = `https://ufc.com/event/${href}`;
 
   try {
     const browser = await puppeteer.launch();

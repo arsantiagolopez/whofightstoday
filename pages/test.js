@@ -1,13 +1,10 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+import useSWR from "swr";
 
 const Test = () => {
-  const headline = "Mackenzie Dern vs Holly Holm";
-
-  const names = headline.split(" vs ");
-  const test = names[0];
-
-  console.log(test);
+  const { data } = useSWR("/api/fighters");
+  console.log("data", data);
   return <Flex {...styles.wrapper}></Flex>;
 };
 
