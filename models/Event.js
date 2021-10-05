@@ -24,6 +24,9 @@ const EventSchema = new Schema(
     location: {
       type: String,
     },
+    href: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

@@ -1,14 +1,71 @@
+import { Fight } from "../../../models/Fight";
+import { scrapeCard } from "../../../puppeteer";
 import { dbConnect } from "../../../utils/dbConnect";
+import { useDates } from "../../../utils/useDates";
 
 // Scrape once, store data in database, recycle every week.
 
+const checkDatabase = async () => {
+  const { startOfWeek, endOfWeek } = useDates();
+
+  try {
+    const fights = await Fight.find({
+      updatedAt: {
+        $gte: startOfWeek.toDate(),
+        $lt: endOfWeek.toDate(),
+      },
+    });
+
+    if (!fights.length) return false;
+
+    return fights;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 /**
- *
- * @param {*} req
- * @param {*} res
- * @returns
+ * Create & store fights in database.
+ * @param {array} fights - array of fights.
+ * @returns an array of newly added/updated fights.
  */
-const getFight = async (req, res) => {};
+const createFights = async (fights) => {
+  try {
+    // Delete old instances of same event
+    await Promise.all(
+      fights.map(
+        async ({ redName, blueName }) =>
+          await Fight.findOneAndRemove({ redName, blueName })
+      )
+    );
+    // Create & save new/updated fights
+    return await Fight.insertMany(fights);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/**
+ * Get all fights from a spcific card.
+ * @method GET
+ * @param {object} req - Http request.
+ * @param {object} res - Http response.
+ * @returns an array of objects with fight info.
+ */
+const getFights = async ({ query }, res) => {
+  const href = query[0];
+
+  const fightsInDb = await checkDatabase();
+
+  if (!fightsInDb) {
+    const scrapedFights = await scrapeCard(href);
+
+    const fights = await createFights(scrapedFights);
+    return res.status(200).json(fights);
+  }
+
+  return res.status(200).json(fightsInDb);
+};
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -17,7 +74,7 @@ const handler = async (req, res) => {
 
   switch (method) {
     case "GET":
-      return getFight(req, res);
+      return getFights(req, res);
     default:
       return res
         .status(405)
