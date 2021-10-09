@@ -1,4 +1,4 @@
-import { Fight } from "../../../models/Fight";
+import { Fight } from "../../../models";
 import { scrapeCard } from "../../../puppeteer";
 import { dbConnect } from "../../../utils/dbConnect";
 import { useDates } from "../../../utils/useDates";
@@ -67,6 +67,7 @@ const getFights = async ({ query }, res) => {
   return res.status(200).json(fightsInDb);
 };
 
+// Main
 const handler = async (req, res) => {
   const { method } = req;
 

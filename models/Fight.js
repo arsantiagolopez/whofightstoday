@@ -4,19 +4,20 @@ const { model, models, Schema } = mongoose;
 
 const FightSchema = new Schema(
   {
-    redName: {
-      type: String,
+    eventId: {
+      type: Schema.Types.ObjectId,
+      ref: "Event",
       required: true,
     },
-    blueName: {
-      type: String,
+    blueFighterId: {
+      type: Schema.Types.ObjectId,
+      ref: "Fighter",
       required: true,
     },
-    redImage: {
-      type: String,
-    },
-    blueImage: {
-      type: String,
+    redFighterId: {
+      type: Schema.Types.ObjectId,
+      ref: "Fighter",
+      required: true,
     },
     weight: {
       type: String,

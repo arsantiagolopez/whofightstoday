@@ -8,15 +8,17 @@ const FighterSchema = new Schema(
       type: String,
       required: true,
     },
-    odds: {
-      type: Number,
-    },
-    ranking: {
-      type: Number,
-    },
-    record: {
+    firstName: {
       type: String,
     },
+    lastName: {
+      type: String,
+    },
+    images: [
+      {
+        type: String,
+      },
+    ],
     country: {
       type: String,
     },

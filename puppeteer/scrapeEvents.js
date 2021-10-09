@@ -24,9 +24,6 @@ const scrapeEvents = async () => {
         // Parent node with children nodes that each have separate needed info
         document.querySelectorAll("article[class*='event--result']"),
         (node) => {
-          const headline = node.querySelector(
-            ".c-card-event--result__headline > a"
-          )?.textContent;
           const startMain = node
             .querySelector("[data-main-card-timestamp]")
             ?.getAttribute("data-main-card-timestamp");
@@ -70,25 +67,28 @@ const scrapeEvents = async () => {
 
           // Images
           // Find a img with src that contains fighter's uppercase last name
-          const names = headline?.split(" vs ");
-          const redName = names[0];
-          const redLastName =
-            redName?.split(" ")?.length > 1
-              ? redName?.split(" ")[1]
-              : redName?.split(" ")[0];
-          const redLastUppercase = redLastName?.toUpperCase();
-          const redImage = node
+          const lastNamesHeadline = node.querySelector(
+            ".c-card-event--result__headline > a"
+          )?.textContent;
+          const names = lastNamesHeadline?.split(" vs ");
+          const redLast = names[0];
+          const redLastUppercase = redLast?.toUpperCase();
+          const redHeadshot = node
             .querySelector(`img[src*='${redLastUppercase}']`)
             ?.getAttribute("src");
-          const blueName = names[1];
-          const blueLastName =
-            blueName?.split(" ")?.length > 1
-              ? blueName?.split(" ")[1]
-              : blueName?.split(" ")[0];
-          const blueLastUppercase = blueLastName?.toUpperCase();
-          const blueImage = node
+          const blueLast = names[1];
+          const blueLastUppercase = blueLast.toUpperCase();
+          const blueHeadshot = node
             .querySelector(`img[src*='${blueLastUppercase}']`)
             ?.getAttribute("src");
+
+          // Headline & full names
+          const headline = node
+            .querySelector(`[data-fight-label*='${redLast}']`)
+            ?.getAttribute("data-fight-label");
+          const fullNames = headline?.split(" vs ");
+          const redName = fullNames[0];
+          const blueName = fullNames[1];
 
           return {
             headline,
@@ -100,8 +100,8 @@ const scrapeEvents = async () => {
             href,
             redName,
             blueName,
-            redImage,
-            blueImage,
+            redHeadshot,
+            blueHeadshot,
           };
         }
       );
@@ -114,12 +114,13 @@ const scrapeEvents = async () => {
 
     // Filter only future events
     const filteredEvents = events.filter((event) => {
-      const unix = parseInt(event?.startMain) * 1000;
-      const isUpcoming = moment(new Date(unix)).isAfter();
+      const UNIX = parseInt(event?.startMain) * 1000;
+      // @todo: TESTING - change to .isAfter()
+      const isUpcoming = moment(new Date(UNIX)).isBefore();
       if (isUpcoming) return event;
     });
 
-    // Convert from unix to Date
+    // Convert from UNIX to Date
     const upcomingEvents = filteredEvents.map((event) => {
       const { startMain, startPrelims } = event;
       const mainDate = new Date(parseInt(startMain) * 1000);
@@ -131,7 +132,11 @@ const scrapeEvents = async () => {
       };
     });
 
-    return upcomingEvents;
+    // @todo: Testing - Delete this line and change return to upcomingEvents
+    const testEvents = upcomingEvents.slice(0, 2);
+
+    // return upcomingEvents;
+    return testEvents;
   } catch (err) {
     console.log(err);
   }

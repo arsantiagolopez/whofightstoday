@@ -28,18 +28,12 @@ const EventSchema = new Schema(
     href: {
       type: String,
     },
-    redName: {
-      type: String,
-    },
-    blueName: {
-      type: String,
-    },
-    redImage: {
-      type: String,
-    },
-    blueImage: {
-      type: String,
-    },
+    fights: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Fight",
+      },
+    ],
   },
   { timestamps: true }
 );
