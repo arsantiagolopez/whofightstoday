@@ -12,12 +12,19 @@ import { Fighter } from "../Fighter";
 
 const Card = ({ card }) => {
   const [fights, setFights] = useState(null);
+  const [main, setMain] = useState(null);
+  const [prelims, setPrelims] = useState(null);
 
   const event = card?.href?.replace("/event/", "");
   const { data } = useSWR(card ? `/api/fights/${event}` : null);
 
+  console.log(fights);
+
   useEffect(() => {
     if (data) {
+      // Order fights
+      data.map((fight) => console.log(fight.order));
+
       setFights(data);
     }
   }, [data]);
@@ -32,10 +39,18 @@ const Card = ({ card }) => {
                 <>
                   <AccordionButton {...styles.button}>
                     {!isExpanded && (
-                      <Flex justify="center" align="center">
-                        <Fighter id={redFighterId} isActive={isExpanded} />
-                        <Image src="/images/vs.png" width="5vw" />
-                        <Fighter id={blueFighterId} isActive={isExpanded} />
+                      <Flex direction="row" justify="center" align="center">
+                        <Fighter
+                          id={redFighterId}
+                          isActive={isExpanded}
+                          corner="red"
+                        />
+                        <Image src="/images/vs.png" width="5vw" marginX="2vw" />
+                        <Fighter
+                          id={blueFighterId}
+                          isActive={isExpanded}
+                          corner="blue"
+                        />
                       </Flex>
                     )}
                   </AccordionButton>

@@ -76,7 +76,7 @@ const createOrUpdateFight = async ({
 
     if (!fights.length) {
       return await Fight.create({
-        fightProps,
+        ...fightProps,
         eventId,
         redFighterId,
         blueFighterId,
