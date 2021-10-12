@@ -1,6 +1,5 @@
 import { CircularProgress } from "@chakra-ui/react";
 import moment from "moment";
-import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Card } from "../components/Card";
@@ -11,8 +10,6 @@ const IndexPage = () => {
   const [card, setCard] = useState(null);
   const { data: events } = useSWR("/api/events");
 
-  console.log("* Events: ", events);
-
   const { startOfWeek, endOfWeek } = useDates();
 
   useEffect(() => {
@@ -21,26 +18,26 @@ const IndexPage = () => {
       const event = events.find(({ startMain }) =>
         moment(startMain).isBetween(startOfWeek, endOfWeek)
       );
+
       setCard(event);
+
+      // // Testing: remove below and uncomment up top
+      // setCard(events[0]);
+    } else {
+      setCard(null);
     }
   }, [events]);
 
   const cardProps = { card };
 
   return (
-    <>
-      <Head>
-        <title>UFC Card This Week</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout>
-        {events ? (
-          <Card {...cardProps} />
-        ) : (
-          <CircularProgress {...styles.progress} />
-        )}
-      </Layout>
-    </>
+    <Layout title="UFC Card This Week">
+      {events ? (
+        <Card {...cardProps} />
+      ) : (
+        <CircularProgress {...styles.progress} />
+      )}
+    </Layout>
   );
 };
 

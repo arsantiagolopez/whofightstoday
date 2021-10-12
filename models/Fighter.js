@@ -14,12 +14,7 @@ const FighterSchema = new Schema(
     lastName: {
       type: String,
     },
-    images: [
-      {
-        type: String,
-      },
-    ],
-    country: {
+    image: {
       type: String,
     },
     weight: {

@@ -13,7 +13,7 @@ const getFighterById = async ({ query }, res) => {
     const fighter = await Fighter.findById(id);
     return res.status(200).json(fighter);
   } catch (err) {
-    return res.status(400).json({ message: error });
+    return res.status(400).json({ message: err });
   }
 };
 

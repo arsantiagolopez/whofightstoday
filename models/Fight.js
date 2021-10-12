@@ -9,12 +9,16 @@ const FightSchema = new Schema(
       ref: "Event",
       required: true,
     },
-    blueFighterId: {
+    headline: {
+      type: String,
+      required: true,
+    },
+    redFighterId: {
       type: Schema.Types.ObjectId,
       ref: "Fighter",
       required: true,
     },
-    redFighterId: {
+    blueFighterId: {
       type: Schema.Types.ObjectId,
       ref: "Fighter",
       required: true,
@@ -36,6 +40,9 @@ const FightSchema = new Schema(
     },
     isMainCard: {
       type: Boolean,
+    },
+    order: {
+      type: String,
     },
   },
   { timestamps: true }

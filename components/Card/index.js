@@ -6,72 +6,45 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
+import { Fighter } from "../Fighter";
 
 const Card = ({ card }) => {
-  const event = card?.href?.replace("/event/", "");
-  const { data: fights } = useSWR(event ? `/api/fights/${event}` : null);
+  const [fights, setFights] = useState(null);
 
-  console.log("fights", fights);
-  console.log("card", card);
+  const event = card?.href?.replace("/event/", "");
+  const { data } = useSWR(card ? `/api/fights/${event}` : null);
+
+  useEffect(() => {
+    if (data) {
+      setFights(data);
+    }
+  }, [data]);
 
   return (
     <Flex {...styles.wrapper}>
       {card && fights && (
-        <Accordion width="100%" defaultIndex={0}>
-          <AccordionItem border="none">
-            {({ isExpanded }) => (
-              <>
-                <AccordionButton
-                  padding="0"
-                  marginX="0"
-                  justifyContent="center"
-                >
-                  {!isExpanded && (
-                    <Image
-                      src={card?.redImage}
-                      alt={card?.redName}
-                      {...styles.image}
-                    />
-                  )}
-                </AccordionButton>
-                <AccordionPanel
-                  display="flex"
-                  flexDirection="row"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Image
-                    src={fights[0]?.redImage}
-                    alt={fights[0]?.redName}
-                    {...styles.image}
-                  />
+        <Accordion defaultIndex={0} {...styles.accordion}>
+          {fights.map(({ redFighterId, blueFighterId }, index) => (
+            <AccordionItem key={index} {...styles.item}>
+              {({ isExpanded }) => (
+                <>
+                  <AccordionButton {...styles.button}>
+                    {!isExpanded && (
+                      <Flex justify="center" align="center">
+                        <Fighter id={redFighterId} isActive={isExpanded} />
+                        <Image src="/images/vs.png" width="5vw" />
+                        <Fighter id={blueFighterId} isActive={isExpanded} />
+                      </Flex>
+                    )}
+                  </AccordionButton>
 
-                  <Image
-                    src="/vs.png"
-                    width={{ base: "10vw", md: "5vw" }}
-                    marginX="7vw"
-                  />
-
-                  <Image
-                    src={fights[0]?.blueImage}
-                    alt={fights[0]?.blueName}
-                    {...styles.image}
-                  />
-                </AccordionPanel>
-              </>
-            )}
-          </AccordionItem>
-
-          <AccordionItem>
-            {({ isExpanded }) => (
-              <>
-                <AccordionButton></AccordionButton>
-                <AccordionPanel width="100%" bg="blue.500"></AccordionPanel>
-              </>
-            )}
-          </AccordionItem>
+                  <AccordionPanel {...styles.panel}></AccordionPanel>
+                </>
+              )}
+            </AccordionItem>
+          ))}
         </Accordion>
       )}
     </Flex>
@@ -84,6 +57,23 @@ export { Card };
 
 const styles = {
   wrapper: {},
+  accordion: {
+    width: "100%",
+  },
+  button: {
+    padding: "0",
+    marginX: "0",
+    justifyContent: "center",
+  },
+  panel: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  item: {
+    border: "none",
+  },
   tabs: {
     width: "100%",
   },

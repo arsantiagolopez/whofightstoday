@@ -1,15 +1,28 @@
 import { Box, Flex } from "@chakra-ui/react";
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   return (
-    <Flex {...styles.wrapper}>
-      <Box {...styles.logo}>
-        <Image src="/logo.png" alt="Fight" {...styles.image} />
-      </Box>
-      <Flex {...styles.content}>{children}</Flex>
-    </Flex>
+    <>
+      <Head>
+        <title>{title}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="/fonts/averta/averta-black-italic.otf"
+          as="font"
+          crossOrigin=""
+        />
+      </Head>
+      <Flex {...styles.wrapper}>
+        <Box {...styles.logo}>
+          <Image src="/images/logo.png" alt="Fight" {...styles.image} />
+        </Box>
+        <Flex {...styles.content}>{children}</Flex>
+      </Flex>
+    </>
   );
 };
 

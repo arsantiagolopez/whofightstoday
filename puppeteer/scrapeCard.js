@@ -18,7 +18,7 @@ const scrapeCard = async (href) => {
     await page.goto(url);
     await page.waitForSelector(".c-listing-fight");
 
-    // Find list of events
+    // Find list of fights
     const card = await page.evaluate(() => {
       const fights = Array.from(
         // Parent node with children nodes that each have separate needed info
@@ -58,18 +58,29 @@ const scrapeCard = async (href) => {
 
           // Images
           // Find a img with src that contains fighter's uppercase last name
-          const redLastUppercase = redName.split(" ")[1]?.toUpperCase();
+          // Get only first last name if they have two, and replace any apostrophe's on name.
+          const redLast = redName.split(" ")[1]?.replace("'", "");
+          const redLastUppercase = redLast?.toUpperCase();
           const redImage = node
             .querySelector(`img[src*='${redLastUppercase}']`)
             ?.getAttribute("src");
-          const blueLastUppercase = blueName.split(" ")[1]?.toUpperCase();
+          const blueLast = blueName.split(" ")[1]?.replace("'", "");
+          const blueLastUppercase = blueLast?.toUpperCase();
           const blueImage = node
             .querySelector(`img[src*='${blueLastUppercase}']`)
             ?.getAttribute("src");
 
           // Main card and Prelim tabs both have main or prelim on their id prop
           let isMainCard = node.closest("details[open]")?.getAttribute("id");
-          isMainCard = isMainCard.includes("prelims") ? false : true;
+          isMainCard = isMainCard?.includes("prelims") ? false : true;
+
+          // Fight headline
+          const headline = `${redName} vs ${blueName}`;
+
+          // Order of fight in card
+          const order = node
+            .closest("[data-order]")
+            ?.getAttribute("data-order");
 
           return {
             weight,
@@ -82,6 +93,8 @@ const scrapeCard = async (href) => {
             redImage,
             blueImage,
             isMainCard,
+            headline,
+            order,
           };
         }
       );

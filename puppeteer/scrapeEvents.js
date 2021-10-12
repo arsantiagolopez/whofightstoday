@@ -65,30 +65,26 @@ const scrapeEvents = async () => {
               typeof country !== "undefined" ? `${country}` : ""
             );
 
-          // Images
-          // Find a img with src that contains fighter's uppercase last name
+          // Headline & full names
+          let headline = null;
+          let redName = null;
+          let blueName = null;
+
           const lastNamesHeadline = node.querySelector(
             ".c-card-event--result__headline > a"
           )?.textContent;
           const names = lastNamesHeadline?.split(" vs ");
-          const redLast = names[0];
-          const redLastUppercase = redLast?.toUpperCase();
-          const redHeadshot = node
-            .querySelector(`img[src*='${redLastUppercase}']`)
-            ?.getAttribute("src");
-          const blueLast = names[1];
-          const blueLastUppercase = blueLast.toUpperCase();
-          const blueHeadshot = node
-            .querySelector(`img[src*='${blueLastUppercase}']`)
-            ?.getAttribute("src");
+          // Only give me first last name if fighter has two
+          const redLast = names[0].split(" ")[0];
 
-          // Headline & full names
-          const headline = node
-            .querySelector(`[data-fight-label*='${redLast}']`)
-            ?.getAttribute("data-fight-label");
-          const fullNames = headline?.split(" vs ");
-          const redName = fullNames[0];
-          const blueName = fullNames[1];
+          if (redLast !== "TBD") {
+            headline = node
+              .querySelector(`[data-fight-label*='${redLast}']`)
+              ?.getAttribute("data-fight-label");
+            const fullNames = headline?.split(" vs ");
+            redName = fullNames[0];
+            blueName = fullNames[1];
+          }
 
           return {
             headline,
@@ -100,8 +96,6 @@ const scrapeEvents = async () => {
             href,
             redName,
             blueName,
-            redHeadshot,
-            blueHeadshot,
           };
         }
       );
@@ -112,16 +106,19 @@ const scrapeEvents = async () => {
     // Close the browser
     await browser.close();
 
-    // Filter only future events
+    // Filter only future and non-null events
     const filteredEvents = events.filter((event) => {
-      const UNIX = parseInt(event?.startMain) * 1000;
-      // @todo: TESTING - change to .isAfter()
-      const isUpcoming = moment(new Date(UNIX)).isBefore();
-      if (isUpcoming) return event;
+      const { startMain, redName, blueName } = event;
+      const nonNull = redName && blueName;
+      const UNIX = parseInt(startMain) * 1000;
+      // Testing: change isBefore to isAfter
+      const isUpcoming = moment(new Date(UNIX)).isAfter();
+      if (isUpcoming && nonNull) return event;
     });
 
     // Convert from UNIX to Date
-    const upcomingEvents = filteredEvents.map((event) => {
+    // Testing: remove .slice(0,2)
+    const upcomingEvents = filteredEvents?.map((event) => {
       const { startMain, startPrelims } = event;
       const mainDate = new Date(parseInt(startMain) * 1000);
       const prelimsDate = new Date(parseInt(startPrelims) * 1000);
@@ -132,11 +129,7 @@ const scrapeEvents = async () => {
       };
     });
 
-    // @todo: Testing - Delete this line and change return to upcomingEvents
-    const testEvents = upcomingEvents.slice(0, 2);
-
-    // return upcomingEvents;
-    return testEvents;
+    return upcomingEvents;
   } catch (err) {
     console.log(err);
   }

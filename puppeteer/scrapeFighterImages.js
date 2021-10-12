@@ -25,13 +25,13 @@ const scrapeFighterImages = async (fighter) => {
     await page.waitForSelector("img[src*='full_body']");
     // Find upper and headshot pictures
     const images = await page.evaluate((lastName) => {
+      // Only give me first last name if fighter has two
+      const lastUppercase = lastName.split(" ")[0].toUpperCase();
       const upper = document
-        .querySelector(
-          `img[src*='${lastName.toUpperCase()}'][src*="full_body"]`
-        )
+        .querySelector(`img[src*='${lastUppercase}'][src*="full_body"]`)
         ?.getAttribute("src");
       const headshot = document
-        .querySelector(`img[src*='${lastName.toUpperCase()}'][src*="headshot"]`)
+        .querySelector(`img[src*='${lastUppercase}'][src*="headshot"]`)
         ?.getAttribute("src");
 
       return {

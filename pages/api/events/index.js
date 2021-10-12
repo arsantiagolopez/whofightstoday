@@ -4,10 +4,38 @@ import { dbConnect } from "../../../utils/dbConnect";
 import { useDates } from "../../../utils/useDates";
 
 /**
- * Fetch events once a week.
+ * Clean up past events.
+ */
+const cleanUpEvents = async () => {
+  const { startOfWeek, endOfWeek } = useDates();
+
+  try {
+    // Delete all events from last week,
+    // OR events that were updated more than a week ago.
+    return await Event.deleteMany({
+      $or: [
+        {
+          startMain: {
+            $lt: startOfWeek.toDate(),
+          },
+        },
+        {
+          updatedAt: {
+            $lt: startOfWeek.toDate(),
+          },
+        },
+      ],
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/**
+ * Fetch events in the current week.
  * UFC might change fighters the day of, but main events,
  * dates and venues tend not to change.
- * @returns an array of events, if fetched within the last week,
+ * @returns an array of events if fetched within the last week,
  * or a false boolean if not.
  */
 const fetchInDatabase = async () => {
@@ -45,21 +73,14 @@ const createEvent = async (event) => {
 /**
  * Create a fighter instance with the minium required info.
  * @param {string} name - full name of fighter.
- * @param {string} headshot - image of fighter.
  * @returns an object of the newly created fighter.
  */
-const createFighter = async ({ name, headshot }) => {
-  const names = name.split(" ");
-  const firstName = names[0];
-  const lastName = names[1];
+const createFighter = async (name) => {
+  let [firstName, ...lastName] = name.split(" ");
+  lastName = lastName.join(" ");
 
   try {
-    return await Fighter.create({
-      name,
-      firstName,
-      lastName,
-      images: [headshot],
-    });
+    return await Fighter.create({ name, firstName, lastName });
   } catch (err) {
     console.log(err);
   }
@@ -67,17 +88,16 @@ const createFighter = async ({ name, headshot }) => {
 
 /**
  * Create a fight instance with the minium required info.
+ * @param {string} headline - Red vs Blue string identifier.
  * @param {string} eventId - ID of event ref.
  * @param {string} redFighterId - ID of red fighter ref.
  * @param {string} blueFighterId - ID of blue fighter ref.
  * @returns an object of the newly created fight.
  */
-const createFight = async ({ eventId, redFighterId, blueFighterId }) => {
+const createFight = async (fight) => {
   try {
     return await Fight.create({
-      eventId,
-      redFighterId,
-      blueFighterId,
+      ...fight,
       isMainCard: true,
     });
   } catch (err) {
@@ -85,57 +105,51 @@ const createFight = async ({ eventId, redFighterId, blueFighterId }) => {
   }
 };
 
+/**
+ * Create events, fighter profiles & fight relations with the
+ * available data scraped from the ufc.com/events/ endpoint.
+ * @param {object} events - All event objects with information.
+ * @returns an array of newly created/updated event objects.
+ */
 const handleScrapedEvents = async (events) => {
   return await Promise.all(
-    events.map(
-      async ({
-        redName,
-        blueName,
-        redHeadshot,
-        blueHeadshot,
-        ...eventProps
-      }) => {
-        // Create event if not in database
-        let event = await Event.findOne({ headline: eventProps?.headline });
-        if (!event) {
-          event = await createEvent(eventProps);
-        }
-
-        // Create fighter profile if not in database
-        let redFighter = await Fighter.findOne({ name: redName });
-        let blueFighter = await Fighter.findOne({ name: blueName });
-        if (!redFighter) {
-          redFighter = await createFighter({
-            name: redName,
-            headshot: redHeadshot,
-          });
-        }
-        if (!blueFighter) {
-          blueFighter = await createFighter({
-            name: blueName,
-            headshot: blueHeadshot,
-          });
-        }
-
-        // Create fight if not in database
-        const fightProps = {
-          eventId: event._id,
-          redFighterId: redFighter._id,
-          blueFighterId: blueFighter._id,
-        };
-        let fight = await Fight.findOne(fightProps);
-        if (!fight) {
-          fight = await createFight(fightProps);
-        }
-
-        // Relate fight back to event for future queries
-        // & return updated event
-        return await Event.findOneAndUpdate(
-          { _id: event._id },
-          { fights: [fight._id] }
-        );
+    events.map(async ({ redName, blueName, ...eventProps }) => {
+      const { headline } = eventProps;
+      // Create event if not in database
+      let event = await Event.findOne({ headline });
+      if (!event) {
+        event = await createEvent(eventProps);
       }
-    )
+
+      // Create fighter profiles if not in database
+      let redFighter = await Fighter.findOne({ name: redName });
+      let blueFighter = await Fighter.findOne({ name: blueName });
+      if (!redFighter) {
+        redFighter = await createFighter(redName);
+      }
+      if (!blueFighter) {
+        blueFighter = await createFighter(blueName);
+      }
+
+      // Create fight if not in database
+      const fightProps = {
+        headline,
+        eventId: event._id,
+        redFighterId: redFighter._id,
+        blueFighterId: blueFighter._id,
+      };
+      let fight = await Fight.findOne(fightProps);
+      if (!fight) {
+        fight = await createFight(fightProps);
+      }
+
+      // Relate fight back to event for future queries
+      // & return updated event
+      return await Event.findOneAndUpdate(
+        { _id: event._id },
+        { fights: [fight._id] }
+      );
+    })
   );
 };
 
@@ -147,7 +161,7 @@ const handleScrapedEvents = async (events) => {
  * @param {object} res - Http response.
  * @returns an array of objects of events.
  */
-const getEvents = async (req, res) => {
+const getEvents = async (_, res) => {
   const eventsInDb = await fetchInDatabase();
 
   if (!eventsInDb) {
