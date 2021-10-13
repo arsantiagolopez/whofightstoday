@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Fighter } from "../Fighter";
 
-const List = ({ fights }) => {
+const List = ({ fights, activeOdds, setActiveOdds }) => {
   const handleClick = ({ target }) => {
     // window.scrollTo(0, target.offsetTop - 500);
     target.scrollIntoView({
@@ -25,7 +25,15 @@ const List = ({ fights }) => {
     <Accordion defaultIndex={0} {...styles.accordion}>
       {fights?.map(
         (
-          { redFighterId, blueFighterId, headline, redRanking, blueRanking },
+          {
+            redFighterId,
+            blueFighterId,
+            headline,
+            redRanking,
+            blueRanking,
+            redOdds,
+            blueOdds,
+          },
           index
         ) => {
           // Get last names of fighters for headline
@@ -37,102 +45,107 @@ const List = ({ fights }) => {
 
           return (
             <AccordionItem key={index} {...styles.item}>
-              {({ isExpanded }) => (
-                <>
-                  {/* Button card */}
-                  <AccordionButton
-                    onClick={handleClick}
-                    display={isExpanded ? "none" : "flex"}
-                    {...styles.button}
-                    marginTop={index === 0 && !isExpanded && "5vh"}
-                  >
-                    {!isExpanded && (
-                      <Flex {...styles.card}>
-                        {/* Ranking */}
-                        <Text
-                          left={{ base: "2em", md: "32vw" }}
-                          {...styles.ranking}
-                        >
-                          {redRanking}
-                        </Text>
-                        {/* Red Fighter */}
-                        <Fighter
-                          id={redFighterId}
-                          isActive={isExpanded}
-                          corner="red"
-                        />
+              {({ isExpanded }) => {
+                const redProps = {
+                  isActive: isExpanded,
+                  corner: "red",
+                  americanOdds: redOdds,
+                  activeOdds,
+                  setActiveOdds,
+                };
+                const blueProps = {
+                  isActive: isExpanded,
+                  corner: "blue",
+                  americanOdds: blueOdds,
+                  activeOdds,
+                  setActiveOdds,
+                };
 
-                        {/* Center info */}
-                        <Flex {...styles.centerSection}>
+                return (
+                  <>
+                    {/* Button card */}
+                    <AccordionButton
+                      onClick={handleClick}
+                      display={isExpanded ? "none" : "flex"}
+                      {...styles.button}
+                      marginTop={index === 0 && !isExpanded && "5vh"}
+                    >
+                      {!isExpanded && (
+                        <Flex {...styles.card}>
+                          {/* Ranking */}
+                          <Text
+                            left={{ base: "2em", md: "34vw" }}
+                            {...styles.ranking}
+                          >
+                            {redRanking}
+                          </Text>
+                          {/* Red Fighter */}
+                          <Fighter id={redFighterId} {...redProps} />
+
+                          {/* Center info */}
+                          <Flex {...styles.centerSection}>
+                            <Heading
+                              {...styles.name}
+                              fontSize={{ base: "sm", md: "2xl" }}
+                            >
+                              {redLastName}
+                            </Heading>
+                            <Image
+                              src="/images/vs.png"
+                              alt="vs"
+                              {...styles.vs}
+                            />
+                            <Heading
+                              {...styles.name}
+                              fontSize={{ base: "sm", md: "2xl" }}
+                            >
+                              {blueLastName}
+                            </Heading>
+                          </Flex>
+
+                          {/* Blue Fighter */}
+                          <Fighter id={blueFighterId} {...blueProps} />
+                          {/* Ranking */}
+                          <Text
+                            right={{ base: "2em", md: "34vw" }}
+                            {...styles.ranking}
+                          >
+                            {blueRanking}
+                          </Text>
+                        </Flex>
+                      )}
+                    </AccordionButton>
+
+                    {/* Panel card */}
+                    <AccordionPanel {...styles.panel}>
+                      {/* Red Fighter */}
+                      <Fighter id={redFighterId} {...redProps} />
+
+                      {/* Center info */}
+                      <Flex {...styles.centerSection}>
+                        <Flex direction="row">
                           <Heading
                             {...styles.name}
-                            fontSize={{ base: "sm", md: "2xl" }}
-                          >
-                            {redLastName}
-                          </Heading>
-                          <Image src="/images/vs.png" alt="vs" {...styles.vs} />
-                          <Heading
-                            {...styles.name}
-                            fontSize={{ base: "sm", md: "2xl" }}
-                          >
-                            {blueLastName}
-                          </Heading>
+                          >{`${redFirstName} ${redLastName}`}</Heading>
+                          <Text {...styles.panelRanking}>{redRanking}</Text>
                         </Flex>
 
-                        {/* Blue Fighter */}
-                        <Fighter
-                          id={blueFighterId}
-                          isActive={isExpanded}
-                          corner="blue"
-                        />
-                        {/* Ranking */}
-                        <Text
-                          right={{ base: "2em", md: "32vw" }}
-                          {...styles.ranking}
-                        >
-                          {blueRanking}
-                        </Text>
-                      </Flex>
-                    )}
-                  </AccordionButton>
+                        <Image src="/images/vs.png" alt="vs" {...styles.vs} />
 
-                  {/* Panel card */}
-                  <AccordionPanel {...styles.panel}>
-                    {/* Red Fighter */}
-                    <Fighter
-                      id={redFighterId}
-                      isActive={isExpanded}
-                      corner="red"
-                    />
-
-                    {/* Center info */}
-                    <Flex {...styles.centerSection}>
-                      <Flex direction="row">
-                        <Heading
-                          {...styles.name}
-                        >{`${redFirstName} ${redLastName}`}</Heading>
-                        <Text {...styles.panelRanking}>{redRanking}</Text>
+                        <Flex direction="row">
+                          <Heading
+                            {...styles.name}
+                          >{`${blueFirstName} ${blueLastName}`}</Heading>
+                          <Text {...styles.panelRanking}>{blueRanking}</Text>
+                        </Flex>
                       </Flex>
 
-                      <Image src="/images/vs.png" alt="vs" {...styles.vs} />
-
-                      <Flex direction="row">
-                        <Heading
-                          {...styles.name}
-                        >{`${blueFirstName} ${blueLastName}`}</Heading>
-                        <Text {...styles.panelRanking}>{blueRanking}</Text>
-                      </Flex>
-                    </Flex>
-
-                    {/* Blue Fighter */}
-                    <Fighter
-                      id={blueFighterId}
-                      isActive={isExpanded}
-                      corner="blue"
-                    />
-                  </AccordionPanel>
-                </>
-              )}
+                      {/* Blue Fighter */}
+                      <Fighter id={blueFighterId} {...blueProps} />
+                    </AccordionPanel>
+                  </>
+                );
+              }}
             </AccordionItem>
           );
         }

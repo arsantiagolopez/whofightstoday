@@ -5,7 +5,7 @@ const ListOfFightsSkeleton = () => (
   <Flex {...styles.wrapper}>
     {Array(6)
       .fill()
-      .map((index) => (
+      .map((_, index) => (
         <Skeleton key={index} {...styles.skeleton} />
       ))}
   </Flex>
