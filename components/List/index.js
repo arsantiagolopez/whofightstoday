@@ -129,7 +129,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
 
                       {/* Center info */}
                       <Flex {...styles.centerSection}>
-                        <Text {...styles.weight}>– {weightClass} –</Text>
+                        <Text {...styles.weight}>{weightClass}</Text>
                         <Flex direction="row">
                           <Heading
                             {...styles.name}
@@ -228,8 +228,8 @@ const styles = {
   },
   weight: {
     position: "absolute",
-    top: { base: "34%", md: "34%" },
-    maxWidth: "30%",
+    top: { base: "0", md: "10%" },
+    // maxWidth: "30%",
     fontFamily: "Arial",
     fontSize: { base: "8pt", md: "10pt" },
     color: "white",
