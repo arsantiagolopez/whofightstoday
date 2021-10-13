@@ -51,23 +51,28 @@ const Card = ({ card }) => {
             ) => {
               // Get last names of fighters for headline
               const names = headline.split(" vs ");
-              let [_, ...redLastName] = names[0].split(" ");
+              let [redFirstName, ...redLastName] = names[0].split(" ");
               redLastName = redLastName.join(" ");
-              let [__, ...blueLastName] = names[1].split(" ");
+              let [blueFirstName, ...blueLastName] = names[1].split(" ");
               blueLastName = blueLastName.join(" ");
 
               return (
                 <AccordionItem key={index} {...styles.item}>
                   {({ isExpanded }) => (
                     <>
+                      {/* Button card */}
                       <AccordionButton
                         display={isExpanded ? "none" : "flex"}
                         {...styles.button}
+                        marginTop={index === 0 && !isExpanded && "5vh"}
                       >
                         {!isExpanded && (
                           <Flex {...styles.card}>
                             {/* Ranking */}
-                            <Text left="2em" {...styles.ranking}>
+                            <Text
+                              left={{ base: "2em", md: "32vw" }}
+                              {...styles.ranking}
+                            >
                               {redRanking}
                             </Text>
                             {/* Red Fighter */}
@@ -76,17 +81,22 @@ const Card = ({ card }) => {
                               isActive={isExpanded}
                               corner="red"
                             />
+
+                            {/* Center info */}
                             <Flex {...styles.centerSection}>
-                              <Heading {...styles.name}>{redLastName}</Heading>
-
-                              <Image
-                                src="/images/vs.png"
-                                width="5vw"
-                                marginX="2vw"
-                                marginBottom="1vh"
-                              />
-
-                              <Heading {...styles.name}>{blueLastName}</Heading>
+                              <Heading
+                                {...styles.name}
+                                fontSize={{ base: "sm", md: "2xl" }}
+                              >
+                                {redLastName}
+                              </Heading>
+                              <Image src="/images/vs.png" {...styles.vs} />
+                              <Heading
+                                {...styles.name}
+                                fontSize={{ base: "sm", md: "2xl" }}
+                              >
+                                {blueLastName}
+                              </Heading>
                             </Flex>
 
                             {/* Blue Fighter */}
@@ -96,42 +106,45 @@ const Card = ({ card }) => {
                               corner="blue"
                             />
                             {/* Ranking */}
-                            <Text right="2em" {...styles.ranking}>
+                            <Text
+                              right={{ base: "2em", md: "32vw" }}
+                              {...styles.ranking}
+                            >
                               {blueRanking}
                             </Text>
                           </Flex>
                         )}
                       </AccordionButton>
 
+                      {/* Panel card */}
                       <AccordionPanel {...styles.panel}>
+                        {/* Red Fighter */}
                         <Fighter
                           id={redFighterId}
                           isActive={isExpanded}
                           corner="red"
                         />
-                        <Flex
-                          direction="column"
-                          justify="center"
-                          align="center"
-                        >
+
+                        {/* Center info */}
+                        <Flex {...styles.centerSection}>
                           <Flex direction="row">
-                            <Heading {...styles.name}>{redLastName}</Heading>
+                            <Heading
+                              {...styles.name}
+                            >{`${redFirstName} ${redLastName}`}</Heading>
                             <Text {...styles.panelRanking}>{redRanking}</Text>
                           </Flex>
 
-                          <Image
-                            src="/images/vs.png"
-                            width="5vw"
-                            marginX="2vw"
-                            marginY="1"
-                          />
+                          <Image src="/images/vs.png" {...styles.vs} />
 
                           <Flex direction="row">
-                            <Heading {...styles.name}>{blueLastName}</Heading>
+                            <Heading
+                              {...styles.name}
+                            >{`${blueFirstName} ${blueLastName}`}</Heading>
                             <Text {...styles.panelRanking}>{blueRanking}</Text>
                           </Flex>
                         </Flex>
 
+                        {/* Blue Fighter */}
                         <Fighter
                           id={blueFighterId}
                           isActive={isExpanded}
@@ -158,14 +171,18 @@ const styles = {
   wrapper: {},
   accordion: {
     width: "100%",
-    marginX: { base: "1em", md: "20vw" },
+    marginX: { base: "1em", md: "30vw" },
   },
   button: {
     justifyContent: "center",
     marginY: "2vh",
-    background: "gray.800",
-    borderRadius: "0.25em",
+    background:
+      "linear-gradient(99deg, #000000 0%, #1A202C 10%, #1A202C 90%, #000000 100%)",
     paddingBottom: 0,
+    _hover: {
+      background:
+        "linear-gradient(99deg, #000000 0%, #CBD5E0 40%, #CBD5E0 60%, #000000 100%)",
+    },
   },
   card: {
     direction: "row",
@@ -178,6 +195,7 @@ const styles = {
     textTransform: "italic",
     fontFamily: "Averta",
     position: "absolute",
+    fontSize: { base: "1rem", md: "1.5rem" },
   },
   centerSection: {
     direction: "column",
@@ -191,21 +209,27 @@ const styles = {
     textTransform: "uppercase",
     letterSpacing: "tight",
     fontSize: { base: "sm", md: "3xl" },
+    textAlign: "center",
+  },
+  vs: {
+    width: { base: "5vw", md: "2vw" },
+    marginX: "2vw",
+    marginBottom: "1vh",
+    marginTop: { base: "0", md: "0.5vh" },
   },
   panelRanking: {
     color: "red.400",
-    fontSize: "8pt",
+    fontSize: { base: "8pt", md: "12pt" },
     marginTop: "auto",
     marginBottom: "0",
     marginLeft: "0.5",
-    textTransform: "italic",
     fontFamily: "Averta",
   },
   panel: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: { base: "space-between", md: "center" },
+    justifyContent: { base: "space-between", md: "space-between" },
   },
   item: {
     border: "none",

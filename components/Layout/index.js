@@ -1,9 +1,9 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Image as ChakraImage, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title, type }) => {
   return (
     <>
       <Head>
@@ -20,6 +20,26 @@ const Layout = ({ children, title }) => {
         <Box {...styles.logo}>
           <Image src="/images/logo.png" alt="Fight" {...styles.image} />
         </Box>
+        <Flex {...styles.type}>
+          {!type ? null : type === "fight night" ? (
+            <Box {...styles.fightNight}>
+              <Image
+                src="/images/fight-night.png"
+                alt={type}
+                {...styles.image}
+              />
+            </Box>
+          ) : (
+            <Flex {...styles.ufc}>
+              <ChakraImage
+                src="/images/ufc.png"
+                alt={type}
+                {...styles.ufcImage}
+              />
+              <Text {...styles.ufcNumber}>{type?.replace("ufc ", "")}</Text>
+            </Flex>
+          )}
+        </Flex>
         <Flex {...styles.content}>{children}</Flex>
       </Flex>
     </>
@@ -45,6 +65,33 @@ const styles = {
   },
   logo: {
     width: { base: "40vw", md: "15vw" },
+  },
+  type: {
+    position: "absolute",
+    top: { base: "9vh", md: "14vh" },
+  },
+  fightNight: {
+    width: { base: "25vw", md: "10vw" },
+    filter: "invert(1)",
+    marginTop: "-2vh",
+  },
+  ufc: {
+    direction: "row",
+    align: "flex-end",
+  },
+  ufcImage: {
+    height: { base: "22px", md: "38px" },
+    filter: "invert(1)",
+    userSelect: "none",
+  },
+  ufcNumber: {
+    color: "white",
+    fontFamily: "Averta",
+    fontSize: { base: "24pt", md: "40pt" },
+    paddingLeft: "1",
+    paddingTop: "auto",
+    lineHeight: { base: "18px", md: "30px" },
+    letterSpacing: "tighter",
   },
   image: {
     layout: "responsive",

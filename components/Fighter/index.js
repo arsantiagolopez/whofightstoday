@@ -19,8 +19,10 @@ const Fighter = ({ id, isActive, corner }) => {
       filter={!image && "invert(0.3)"}
       fit="cover"
       align="20% 0"
-      width={isActive ? "auto" : "25vw"}
-      height={isActive ? "40vh" : "12vh"}
+      width={isActive ? "auto" : { base: "25vw", md: "9vw" }}
+      height={
+        isActive ? { base: "40vh", md: "60vh" } : { base: "12vh", md: "15vh" }
+      }
     />
   );
 };

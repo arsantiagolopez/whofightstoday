@@ -31,7 +31,7 @@ const IndexPage = () => {
   const cardProps = { card };
 
   return (
-    <Layout title="UFC Card This Week">
+    <Layout title="UFC Card This Week" type={card?.type}>
       {events ? (
         <Card {...cardProps} />
       ) : (
