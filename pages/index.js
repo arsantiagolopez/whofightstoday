@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Card } from "../components/Card";
 import { Layout } from "../components/Layout";
-import { useDates } from "../utils/useDates";
+import { getDates } from "../utils/getDates";
 
 const IndexPage = () => {
   const [card, setCard] = useState(null);
   const { data: events } = useSWR("/api/events");
 
-  const { startOfWeek, endOfWeek } = useDates();
+  const { startOfWeek, endOfWeek } = getDates();
 
   useEffect(() => {
     if (events) {

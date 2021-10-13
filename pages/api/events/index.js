@@ -1,13 +1,13 @@
 import { Event, Fight, Fighter } from "../../../models";
 import { scrapeEvents } from "../../../puppeteer";
 import { dbConnect } from "../../../utils/dbConnect";
-import { useDates } from "../../../utils/useDates";
+import { getDates } from "../../../utils/getDates";
 
 /**
  * Clean up past events.
  */
 const cleanUpEvents = async () => {
-  const { startOfWeek, endOfWeek } = useDates();
+  const { startOfWeek, endOfWeek } = getDates();
 
   try {
     // Delete all events from last week,
@@ -39,7 +39,7 @@ const cleanUpEvents = async () => {
  * or a false boolean if not.
  */
 const fetchInDatabase = async () => {
-  const { startOfWeek, endOfWeek } = useDates();
+  const { startOfWeek, endOfWeek } = getDates();
 
   try {
     const events = await Event.find({

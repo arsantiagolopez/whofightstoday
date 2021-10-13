@@ -16,6 +16,7 @@ const Fighter = ({ id, isActive, corner }) => {
   return (
     <Image
       src={imageSrc}
+      alt={name}
       filter={!image && "invert(0.3)"}
       fit="cover"
       align="20% 0"

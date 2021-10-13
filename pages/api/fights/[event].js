@@ -1,7 +1,7 @@
 import { Event, Fight, Fighter } from "../../../models";
 import { scrapeCard } from "../../../puppeteer";
 import { dbConnect } from "../../../utils/dbConnect";
-import { useDates } from "../../../utils/useDates";
+import { getDates } from "../../../utils/getDates";
 
 /**
  * Fetch fights in database.
@@ -10,7 +10,7 @@ import { useDates } from "../../../utils/useDates";
  * or a false boolean if no fight found in database.
  */
 const fetchInDatabase = async (event) => {
-  const { startOfWeek, endOfWeek } = useDates();
+  const { startOfWeek, endOfWeek } = getDates();
   const href = `/event/${event}`;
 
   try {

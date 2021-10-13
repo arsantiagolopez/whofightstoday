@@ -3,7 +3,7 @@ import moment from "moment";
 /**
  * @returns commonly resused dates.
  */
-const useDates = () => {
+const getDates = () => {
   const now = moment();
   const startOfWeek = moment(now).startOf("isoWeek");
   const endOfWeek = moment(now).endOf("isoWeek");
@@ -12,4 +12,4 @@ const useDates = () => {
   return { now, startOfWeek, endOfWeek, startOfMonth, endOfMonth };
 };
 
-export { useDates };
+export { getDates };
