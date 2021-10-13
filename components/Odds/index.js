@@ -6,6 +6,11 @@ const Odds = ({ americanOdds, activeOdds, setActiveOdds }) => {
 
   // Convert from american to decimal
   const convertToDecimal = () => {
+    // Some fights might not have odds
+    if (americanOdds === "-" || americanOdds === null) {
+      return "-";
+    }
+
     let number = parseInt(americanOdds);
     if (number > 0) {
       number = americanOdds / 100 + 1;

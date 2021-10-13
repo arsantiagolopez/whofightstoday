@@ -13,7 +13,7 @@ const Fighter = ({
 }) => {
   const { data: fighter } = useSWR(id ? `/api/fighters/${id}` : null);
 
-  const { _id, firstName, lastName, name, image, weight } = fighter || {};
+  const { name, image } = fighter || {};
 
   const imageSrc = image
     ? image
@@ -51,6 +51,6 @@ const styles = {
   },
   image: {
     fit: "cover",
-    align: "20% 0",
+    align: "50% 0",
   },
 };

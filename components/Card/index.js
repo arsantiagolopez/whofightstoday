@@ -112,7 +112,7 @@ const styles = {
     fontSize: { base: "1xl", md: "4xl" },
     textTransform: "uppercase",
     letterSpacing: "tighter",
-    lineHeight: { base: "1.5em", md: "1.5em" },
+    lineHeight: { base: "1.5em", md: "1.25em" },
     padding: "0",
     _active: {
       color: "white",
@@ -136,7 +136,7 @@ const styles = {
   odds: {
     cursor: "pointer",
     fontSize: { base: "1xl", md: "4xl" },
-    lineHeight: { base: "1.5em", md: "1em" },
+    lineHeight: { base: "1.5em", md: "1.25em" },
     textAlign: { base: "right", md: "left" },
   },
 };

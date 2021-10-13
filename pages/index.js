@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Card } from "../components/Card";
 import { Layout } from "../components/Layout";
+import { Upcoming } from "../components/Upcoming";
 import { getDates } from "../utils/getDates";
 
 const IndexPage = () => {
   const [card, setCard] = useState(null);
+  const [upcoming, setUpcoming] = useState(null);
   const { data: events } = useSWR("/api/events");
 
   const { startOfWeek, endOfWeek } = getDates();
@@ -18,8 +20,12 @@ const IndexPage = () => {
       const event = events.find(({ startMain }) =>
         moment(startMain).isBetween(startOfWeek, endOfWeek)
       );
-
+      // Get all future events
+      const futureEvents = events.filter(({ startMain }) =>
+        moment(startMain).isAfter(endOfWeek)
+      );
       setCard(event);
+      setUpcoming(futureEvents);
 
       // // Testing: remove below and uncomment up top
       // setCard(events[0]);
@@ -29,11 +35,15 @@ const IndexPage = () => {
   }, [events]);
 
   const cardProps = { card };
+  const upcomingProps = { upcoming };
 
   return (
     <Layout title="UFC Card This Week" type={card?.type}>
       {events ? (
-        <Card {...cardProps} />
+        <>
+          <Card {...cardProps} />
+          <Upcoming {...upcomingProps} />
+        </>
       ) : (
         <CircularProgress {...styles.progress} />
       )}

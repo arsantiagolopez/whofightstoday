@@ -57,7 +57,7 @@ const styles = {
     width: "100%",
     minHeight: "100vh",
     paddingY: { base: "2vh", md: "5vh" },
-    bg: "rgba(1,1,20,1)",
+    background: "rgba(1,1,20,1)",
   },
   content: {
     direction: "column",

@@ -33,6 +33,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
             blueRanking,
             redOdds,
             blueOdds,
+            weight,
           },
           index
         ) => {
@@ -42,6 +43,8 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
           redLastName = redLastName.join(" ");
           let [blueFirstName, ...blueLastName] = names[1].split(" ");
           blueLastName = blueLastName.join(" ");
+
+          const weightClass = weight.replace(" Bout", "");
 
           return (
             <AccordionItem key={index} {...styles.item}>
@@ -117,21 +120,23 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                     </AccordionButton>
 
                     {/* Panel card */}
-                    <AccordionPanel {...styles.panel}>
+                    <AccordionPanel
+                      marginTop={index === 0 && isExpanded && "3vh"}
+                      {...styles.panel}
+                    >
                       {/* Red Fighter */}
                       <Fighter id={redFighterId} {...redProps} />
 
                       {/* Center info */}
                       <Flex {...styles.centerSection}>
+                        <Text {...styles.weight}>– {weightClass} –</Text>
                         <Flex direction="row">
                           <Heading
                             {...styles.name}
                           >{`${redFirstName} ${redLastName}`}</Heading>
                           <Text {...styles.panelRanking}>{redRanking}</Text>
                         </Flex>
-
                         <Image src="/images/vs.png" alt="vs" {...styles.vs} />
-
                         <Flex direction="row">
                           <Heading
                             {...styles.name}
@@ -166,11 +171,11 @@ const styles = {
     justifyContent: "center",
     marginY: "2vh",
     background:
-      "linear-gradient(99deg, #000000 0%, #1A202C 10%, #1A202C 90%, #000000 100%)",
+      "linear-gradient(99deg, rgba(1,1,20,1) 0%, #1A202C 10%, #1A202C 90%, rgba(1,1,20,1) 100%)",
     paddingBottom: 0,
     _hover: {
       background:
-        "linear-gradient(99deg, #000000 0%, #CBD5E0 40%, #CBD5E0 60%, #000000 100%)",
+        "linear-gradient(99deg, rgba(1,1,20,1) 0%, #CBD5E0 40%, #CBD5E0 60%, rgba(1,1,20,1) 100%)",
     },
   },
   card: {
@@ -190,7 +195,6 @@ const styles = {
     direction: "column",
     justify: "center",
     align: "center",
-    width: "50%",
   },
   name: {
     fontFamily: "Averta",
@@ -215,11 +219,22 @@ const styles = {
     fontFamily: "Averta",
   },
   panel: {
+    position: "relative",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingY: { base: "2", md: "-2vh" },
+  },
+  weight: {
+    position: "absolute",
+    top: { base: "34%", md: "34%" },
+    maxWidth: "30%",
+    fontFamily: "Arial",
+    fontSize: { base: "8pt", md: "10pt" },
+    color: "white",
+    textAlign: "center",
+    lineHeight: "1em",
   },
   item: {
     border: "none",
