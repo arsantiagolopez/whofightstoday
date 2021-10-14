@@ -7,6 +7,7 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { List } from "../List";
@@ -18,7 +19,9 @@ const Card = ({ card }) => {
   const [main, setMain] = useState(null);
   const [prelims, setPrelims] = useState(null);
 
-  const event = card?.href?.replace("/event/", "");
+  const { href, startMain, startPrelims } = card || {};
+
+  const event = href?.replace("/event/", "");
   const { data } = useSWR(card ? `/api/fights/${event}` : null);
 
   const handleTabsChange = (index) => setTabIndex(index);
@@ -85,6 +88,25 @@ const Card = ({ card }) => {
           Decimal
         </Text>
       </Flex>
+
+      {/* Start time */}
+      <Flex {...styles.startTime}>
+        <Text {...styles.time}>
+          {tabIndex === 0 ? "Main starts" : "Prelims start"}
+        </Text>
+        <Text
+          {...styles.time}
+          {...styles.date}
+          fontSize={{ base: "1xl", md: "3xl" }}
+        >
+          {moment(tabIndex === 0 ? startMain : startPrelims).format(
+            "ddd. MMM. D"
+          )}
+        </Text>
+        <Text {...styles.time} {...styles.date}>
+          @ {moment(tabIndex === 0 ? startMain : startPrelims).format("h:00 A")}
+        </Text>
+      </Flex>
     </>
   );
 };
@@ -104,7 +126,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    top: { base: "1em", md: "40vh" },
+    top: { base: "1em", md: "45vh" },
     left: { base: "1em", md: "5vw" },
   },
   tab: {
@@ -121,7 +143,6 @@ const styles = {
       color: "white",
     },
   },
-  panels: {},
   panel: {
     padding: "0",
   },
@@ -138,5 +159,25 @@ const styles = {
     fontSize: { base: "1xl", md: "4xl" },
     lineHeight: { base: "1.5em", md: "1.25em" },
     textAlign: { base: "right", md: "left" },
+  },
+  startTime: {
+    display: { base: "none", md: "flex" },
+    position: "fixed",
+    top: "10vh",
+    left: "5vw",
+    direction: "column",
+    color: "white",
+    fontFamily: "Averta",
+  },
+  date: {
+    fontSize: "1.25em",
+    textTransform: "normal",
+  },
+  time: {
+    fontSize: "4xl",
+    lineHeight: "1.25em",
+    textAlign: "left",
+    textTransform: "uppercase",
+    letterSpacing: "tighter",
   },
 };

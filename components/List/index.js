@@ -82,6 +82,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                           >
                             {redRanking}
                           </Text>
+
                           {/* Red Fighter */}
                           <Fighter id={redFighterId} {...redProps} />
 
@@ -108,6 +109,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
 
                           {/* Blue Fighter */}
                           <Fighter id={blueFighterId} {...blueProps} />
+
                           {/* Ranking */}
                           <Text
                             right={{ base: "2em", md: "34vw" }}
@@ -130,13 +132,16 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                       {/* Center info */}
                       <Flex {...styles.centerSection}>
                         <Text {...styles.weight}>{weightClass}</Text>
+
                         <Flex direction="row">
                           <Heading
                             {...styles.name}
                           >{`${redFirstName} ${redLastName}`}</Heading>
                           <Text {...styles.panelRanking}>{redRanking}</Text>
                         </Flex>
+
                         <Image src="/images/vs.png" alt="vs" {...styles.vs} />
+
                         <Flex direction="row">
                           <Heading
                             {...styles.name}
@@ -166,6 +171,8 @@ export { List };
 const styles = {
   accordion: {
     width: "100%",
+    paddingTop: "3vh",
+    paddingBottom: "5vh",
   },
   button: {
     justifyContent: "center",
@@ -228,10 +235,11 @@ const styles = {
   },
   weight: {
     position: "absolute",
-    top: { base: "0", md: "10%" },
-    // maxWidth: "30%",
+    top: { base: "30%", md: "32%" },
     fontFamily: "Arial",
     fontSize: { base: "8pt", md: "10pt" },
+    fontWeight: "400",
+    letterSpacing: "tight",
     color: "white",
     textAlign: "center",
     lineHeight: "1em",
