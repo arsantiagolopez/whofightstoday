@@ -1,13 +1,15 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
-const Footer = () => {
-  return (
-    <Flex {...styles.wrapper}>
-      <Text {...styles.text}>Coded & designed with ❤️ by Alex.</Text>
-    </Flex>
-  );
-};
+const Footer = () => (
+  <Flex {...styles.wrapper}>
+    <Text {...styles.text}>
+      <a href={process.env.NEXT_PUBLIC_PORTFOLIO} target="_blank">
+        Coded & designed with ❤️ by Alex.
+      </a>
+    </Text>
+  </Flex>
+);
 
 export { Footer };
 
@@ -21,9 +23,14 @@ const styles = {
     paddingY: { base: "5vh", md: "0" },
   },
   text: {
-    color: "gray.500",
+    cursor: "pointer",
+    color: "gray.700",
     fontSize: "10pt",
     fontStyle: "italic",
     letterSpacing: "tighter",
+    _hover: {
+      color: "white",
+      textDecoration: "underline",
+    },
   },
 };
