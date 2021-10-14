@@ -64,7 +64,6 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                   activeOdds,
                   setActiveOdds,
                 };
-                const fightProps = { redProps, blueProps, weightClass };
 
                 return (
                   <>
@@ -90,21 +89,11 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
 
                           {/* Center info */}
                           <Flex {...styles.centerSection}>
-                            <Heading
-                              {...styles.name}
-                              fontSize={{ base: "sm", md: "2xl" }}
-                            >
+                            <Heading {...styles.name} {...styles.buttonName}>
                               {redLastName}
                             </Heading>
-                            <Image
-                              src="/images/vs.png"
-                              alt="vs"
-                              {...styles.vs}
-                            />
-                            <Heading
-                              {...styles.name}
-                              fontSize={{ base: "sm", md: "2xl" }}
-                            >
+                            <Image {...styles.vs} />
+                            <Heading {...styles.name} {...styles.buttonName}>
                               {blueLastName}
                             </Heading>
                           </Flex>
@@ -142,7 +131,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                           <Text {...styles.panelRanking}>{redRanking}</Text>
                         </Flex>
 
-                        <Image src="/images/vs.png" alt="vs" {...styles.vs} />
+                        <Image {...styles.vs} />
 
                         <Flex direction="row">
                           <Heading
@@ -173,7 +162,7 @@ export { List };
 const styles = {
   accordion: {
     width: "100%",
-    paddingTop: "3vh",
+    paddingTop: { base: "5vh", md: "3vh" },
     paddingBottom: { base: "2vh", md: "5vh" },
   },
   button: {
@@ -213,7 +202,12 @@ const styles = {
     fontSize: { base: "sm", md: "3xl" },
     textAlign: "center",
   },
+  buttonName: {
+    fontSize: { base: "sm", md: "2xl" },
+  },
   vs: {
+    src: "/images/vs.png",
+    alt: "vs",
     width: { base: "5vw", md: "2vw" },
     marginX: "2vw",
     marginBottom: "1vh",
@@ -237,11 +231,11 @@ const styles = {
   },
   weight: {
     position: "absolute",
-    top: { base: "30%", md: "32%" },
+    top: { base: "34%", md: "34%" },
     fontFamily: "Arial",
     fontSize: { base: "8pt", md: "10pt" },
-    fontWeight: "400",
-    letterSpacing: "tight",
+    fontWeight: "700",
+    letterSpacing: "tighter",
     color: "white",
     textAlign: "center",
     lineHeight: "1em",

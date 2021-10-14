@@ -2,6 +2,7 @@ import { Box, Flex, Image as ChakraImage, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+import { Footer } from "../Footer";
 
 const Layout = ({ children, title, type }) => {
   return (
@@ -41,6 +42,7 @@ const Layout = ({ children, title, type }) => {
           )}
         </Flex>
         <Flex {...styles.content}>{children}</Flex>
+        <Footer />
       </Flex>
     </>
   );

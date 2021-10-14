@@ -7,11 +7,7 @@ const Headshot = ({ name, corner }) => {
 
   const { name: fighterName, image } = fighter || {};
 
-  const imageSrc = image
-    ? image
-    : corner === "red"
-    ? process.env.NEXT_PUBLIC_FULL_RED
-    : process.env.NEXT_PUBLIC_FULL_BLUE;
+  const imageSrc = image ? image : process.env.NEXT_PUBLIC_HEADSHOT;
 
   return (
     <Image
@@ -19,7 +15,7 @@ const Headshot = ({ name, corner }) => {
       alt={fighterName}
       marginRight={
         corner === "red"
-          ? { base: "-12vw", md: "-1.5vw" }
+          ? { base: "-10vw", md: "-1.5vw" }
           : { base: "0", md: "-2" }
       }
       zIndex={corner === "red" ? "2" : "1"}
@@ -35,6 +31,6 @@ export { Headshot };
 const styles = {
   wrapper: {},
   image: {
-    width: { base: "32vw", md: "4.5vw" },
+    width: { base: "35vw", md: "4.5vw" },
   },
 };

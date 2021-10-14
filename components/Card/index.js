@@ -91,19 +91,20 @@ const Card = ({ card }) => {
 
       {/* Start time */}
       <Flex {...styles.startTime}>
-        <Text {...styles.time}>
+        <Text {...styles.type}>
           {tabIndex === 0 ? "Main starts" : "Prelims start"}
         </Text>
-        <Text
-          {...styles.time}
-          {...styles.date}
-          fontSize={{ base: "1xl", md: "3xl" }}
-        >
+        <Text {...styles.dateMobile}>
+          {moment(tabIndex === 0 ? startMain : startPrelims).format(
+            "ddd. MMMM Do"
+          )}
+        </Text>
+        <Text {...styles.dateDesktop}>
           {moment(tabIndex === 0 ? startMain : startPrelims).format(
             "ddd. MMM. D"
           )}
         </Text>
-        <Text {...styles.time} {...styles.date}>
+        <Text {...styles.time}>
           @ {moment(tabIndex === 0 ? startMain : startPrelims).format("h:00 A")}
         </Text>
       </Flex>
@@ -131,7 +132,7 @@ const styles = {
   },
   tab: {
     fontFamily: "Averta",
-    fontSize: { base: "1xl", md: "4xl" },
+    fontSize: { base: "1.2em", md: "4xl" },
     textTransform: "uppercase",
     letterSpacing: "tighter",
     lineHeight: { base: "1.5em", md: "1.25em" },
@@ -156,27 +157,40 @@ const styles = {
   },
   odds: {
     cursor: "pointer",
-    fontSize: { base: "1xl", md: "4xl" },
+    fontSize: { base: "1.2em", md: "4xl" },
     lineHeight: { base: "1.5em", md: "1.25em" },
     textAlign: { base: "right", md: "left" },
   },
   startTime: {
-    display: { base: "none", md: "flex" },
-    position: "fixed",
-    top: "10vh",
-    left: "5vw",
-    direction: "column",
+    direction: { base: "column", md: "column" },
+    position: { base: "absolute", md: "fixed" },
+    align: { base: "center", md: "flex-start" },
+    justify: "center",
+    width: "100%",
+    top: { base: "14vh", md: "10vh" },
+    left: { base: "auto", md: "5vw" },
     color: "white",
     fontFamily: "Averta",
-  },
-  date: {
-    fontSize: "1.25em",
-  },
-  time: {
-    fontSize: "4xl",
-    lineHeight: "1.25em",
     textAlign: "left",
     textTransform: "uppercase",
+    lineHeight: { base: "1.5em", md: "2.5em" },
     letterSpacing: "tighter",
+  },
+  type: {
+    display: { base: "none", md: "block" },
+    fontSize: "4xl",
+  },
+  dateMobile: {
+    display: { base: "block", md: "none" },
+    fontSize: { base: "0.75em", md: "3xl" },
+  },
+  dateDesktop: {
+    display: { base: "none", md: "block" },
+    fontSize: { base: "0.75em", md: "3xl" },
+  },
+  time: {
+    fontSize: { base: "0.75em", md: "2xl" },
+    lineHeight: "1.2em",
+    marginLeft: { base: "1.5", md: "0" },
   },
 };
