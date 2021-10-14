@@ -8,10 +8,11 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
+import moment from "moment";
 import React from "react";
 import { Fighter } from "../Fighter";
 
-const List = ({ fights, activeOdds, setActiveOdds }) => {
+const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
   // Scroll card into view
   const handleClick = ({ target }) => {
     // window.scrollTo(0, target.offsetTop - 500);
@@ -35,6 +36,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
             redOdds,
             blueOdds,
             weight,
+            order,
           },
           index
         ) => {
@@ -46,6 +48,19 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
           blueLastName = blueLastName.join(" ");
 
           const weightClass = weight.replace(" Bout", "");
+
+          // UFC Main Cards usually last 3 hours
+          // with fight slots divided by 30 minutes each
+          // Start from the main which is most important.
+          const minutesFromMainStart = 165; // 165 minutes = 2:45 from start
+          // Last fight of main card has order value 1, second to last has order 2, etc...
+          // Each fight slot should take about 30 minutes.
+          const minutesToSubtract = minutesFromMainStart - order * 30;
+          const approxStartFightTime = moment(startMain)
+            .add(minutesToSubtract, "minutes")
+            .toDate();
+          const formattedApproxStart =
+            moment(approxStartFightTime).format("h:mm A");
 
           return (
             <AccordionItem key={index} {...styles.item}>
@@ -123,22 +138,22 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                       {/* Center info */}
                       <Flex {...styles.centerSection}>
                         <Text {...styles.weight}>{weightClass}</Text>
-
-                        <Flex direction="row">
+                        <Flex>
                           <Heading
                             {...styles.name}
                           >{`${redFirstName} ${redLastName}`}</Heading>
                           <Text {...styles.panelRanking}>{redRanking}</Text>
                         </Flex>
-
                         <Image {...styles.vs} />
-
-                        <Flex direction="row">
+                        <Flex>
                           <Heading
                             {...styles.name}
                           >{`${blueFirstName} ${blueLastName}`}</Heading>
                           <Text {...styles.panelRanking}>{blueRanking}</Text>
                         </Flex>
+                        <Text {...styles.approxStart}>
+                          Expected {formattedApproxStart}
+                        </Text>
                       </Flex>
 
                       {/* Blue Fighter */}
@@ -164,6 +179,9 @@ const styles = {
     width: "100%",
     paddingTop: { base: "5vh", md: "3vh" },
     paddingBottom: { base: "2vh", md: "5vh" },
+  },
+  item: {
+    border: "none",
   },
   button: {
     justifyContent: "center",
@@ -231,7 +249,7 @@ const styles = {
   },
   weight: {
     position: "absolute",
-    top: { base: "34%", md: "34%" },
+    top: { base: "34%", md: "30%" },
     fontFamily: "Arial",
     fontSize: { base: "8pt", md: "10pt" },
     fontWeight: "700",
@@ -240,13 +258,16 @@ const styles = {
     textAlign: "center",
     lineHeight: "1em",
   },
-  item: {
-    border: "none",
-  },
-  tabs: {
-    width: "100%",
-  },
-  image: {
-    width: { base: "25vw", md: "10vw" },
+  approxStart: {
+    position: "absolute",
+    bottom: { base: "34%", md: "30%" },
+    fontFamily: "Arial",
+    fontSize: { base: "8pt", md: "10pt" },
+    fontWeight: "700",
+    letterSpacing: "tighter",
+    color: "white",
+    textAlign: "center",
+    lineHeight: "1em",
+    fontStyle: "italic",
   },
 };

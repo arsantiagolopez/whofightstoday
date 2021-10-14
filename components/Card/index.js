@@ -39,7 +39,7 @@ const Card = ({ card }) => {
     }
   }, [data]);
 
-  const listProps = { activeOdds, setActiveOdds };
+  const listProps = { activeOdds, setActiveOdds, startMain };
 
   // Show loading list of fights skeleton
   if (!data) {
