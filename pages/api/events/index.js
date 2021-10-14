@@ -73,14 +73,15 @@ const createEvent = async (event) => {
 /**
  * Create a fighter instance with the minium required info.
  * @param {string} name - full name of fighter.
+ * @param {string} image - headshot image of fighter.
  * @returns an object of the newly created fighter.
  */
-const createFighter = async (name) => {
+const createFighter = async ({ name, image }) => {
   let [firstName, ...lastName] = name.split(" ");
   lastName = lastName.join(" ");
 
   try {
-    return await Fighter.create({ name, firstName, lastName });
+    return await Fighter.create({ name, firstName, lastName, image });
   } catch (err) {
     console.log(err);
   }
@@ -113,43 +114,48 @@ const createFight = async (fight) => {
  */
 const handleScrapedEvents = async (events) => {
   return await Promise.all(
-    events.map(async ({ redName, blueName, ...eventProps }) => {
-      const { headline } = eventProps;
-      // Create event if not in database
-      let event = await Event.findOne({ headline });
-      if (!event) {
-        event = await createEvent(eventProps);
-      }
+    events.map(
+      async ({ redName, blueName, redImage, blueImage, ...eventProps }) => {
+        const { headline } = eventProps;
+        // Create event if not in database
+        let event = await Event.findOne({ headline });
+        if (!event) {
+          event = await createEvent(eventProps);
+        }
 
-      // Create fighter profiles if not in database
-      let redFighter = await Fighter.findOne({ name: redName });
-      let blueFighter = await Fighter.findOne({ name: blueName });
-      if (!redFighter) {
-        redFighter = await createFighter(redName);
-      }
-      if (!blueFighter) {
-        blueFighter = await createFighter(blueName);
-      }
+        // Create fighter profiles if not in database
+        let redFighter = await Fighter.findOne({ name: redName });
+        let blueFighter = await Fighter.findOne({ name: blueName });
+        if (!redFighter) {
+          redFighter = await createFighter({ name: redName, image: redImage });
+        }
+        if (!blueFighter) {
+          blueFighter = await createFighter({
+            name: blueName,
+            image: blueImage,
+          });
+        }
 
-      // Create fight if not in database
-      const fightProps = {
-        headline,
-        eventId: event._id,
-        redFighterId: redFighter._id,
-        blueFighterId: blueFighter._id,
-      };
-      let fight = await Fight.findOne(fightProps);
-      if (!fight) {
-        fight = await createFight(fightProps);
-      }
+        // Create fight if not in database
+        const fightProps = {
+          headline,
+          eventId: event._id,
+          redFighterId: redFighter._id,
+          blueFighterId: blueFighter._id,
+        };
+        let fight = await Fight.findOne(fightProps);
+        if (!fight) {
+          fight = await createFight(fightProps);
+        }
 
-      // Relate fight back to event for future queries
-      // & return updated event
-      return await Event.findOneAndUpdate(
-        { _id: event._id },
-        { fights: [fight._id] }
-      );
-    })
+        // Relate fight back to event for future queries
+        // & return updated event
+        return await Event.findOneAndUpdate(
+          { _id: event._id },
+          { fights: [fight._id] }
+        );
+      }
+    )
   );
 };
 

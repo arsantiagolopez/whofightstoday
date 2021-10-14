@@ -171,7 +171,6 @@ const styles = {
   },
   date: {
     fontSize: "1.25em",
-    textTransform: "normal",
   },
   time: {
     fontSize: "4xl",

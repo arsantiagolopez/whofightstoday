@@ -12,6 +12,7 @@ import React from "react";
 import { Fighter } from "../Fighter";
 
 const List = ({ fights, activeOdds, setActiveOdds }) => {
+  // Scroll card into view
   const handleClick = ({ target }) => {
     // window.scrollTo(0, target.offsetTop - 500);
     target.scrollIntoView({
@@ -63,6 +64,7 @@ const List = ({ fights, activeOdds, setActiveOdds }) => {
                   activeOdds,
                   setActiveOdds,
                 };
+                const fightProps = { redProps, blueProps, weightClass };
 
                 return (
                   <>
@@ -172,7 +174,7 @@ const styles = {
   accordion: {
     width: "100%",
     paddingTop: "3vh",
-    paddingBottom: "5vh",
+    paddingBottom: { base: "2vh", md: "5vh" },
   },
   button: {
     justifyContent: "center",

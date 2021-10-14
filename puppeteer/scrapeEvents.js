@@ -65,10 +65,12 @@ const scrapeEvents = async () => {
               typeof country !== "undefined" ? `${country}` : ""
             );
 
-          // Headline & full names
+          // Headline, full names & images
           let headline = null;
           let redName = null;
           let blueName = null;
+          let redImage = null;
+          let blueImage = null;
 
           const lastNamesHeadline = node.querySelector(
             ".c-card-event--result__headline > a"
@@ -76,6 +78,7 @@ const scrapeEvents = async () => {
           const names = lastNamesHeadline?.split(" vs ");
           // Only give me first last name if fighter has two
           const redLast = names[0].split(" ")[0];
+          const blueLast = names[1].split(" ")[0];
 
           if (redLast !== "TBD") {
             headline = node
@@ -84,6 +87,16 @@ const scrapeEvents = async () => {
             const fullNames = headline?.split(" vs ");
             redName = fullNames[0];
             blueName = fullNames[1];
+            redImage = node
+              .querySelector(
+                `[src*='${redLast.toUpperCase()}'][src*="headshot"]`
+              )
+              ?.getAttribute("src");
+            blueImage = node
+              .querySelector(
+                `[src*='${blueLast.toUpperCase()}'][src*="headshot"]`
+              )
+              ?.getAttribute("src");
           }
 
           return {
@@ -96,6 +109,8 @@ const scrapeEvents = async () => {
             href,
             redName,
             blueName,
+            redImage,
+            blueImage,
           };
         }
       );
