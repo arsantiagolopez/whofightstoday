@@ -4,7 +4,11 @@ import React from "react";
 const Footer = () => (
   <Flex {...styles.wrapper}>
     <Text {...styles.text}>
-      <a href={process.env.NEXT_PUBLIC_PORTFOLIO} target="_blank">
+      <a
+        href={process.env.NEXT_PUBLIC_PORTFOLIO}
+        rel="noreferrer"
+        target="_blank"
+      >
         Coded & designed with ❤️ by Alex.
       </a>
     </Text>
