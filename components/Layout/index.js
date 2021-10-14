@@ -4,49 +4,43 @@ import Image from "next/image";
 import React from "react";
 import { Footer } from "../Footer";
 
-const Layout = ({ children, title, type }) => {
-  return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="preload"
-          href="/fonts/averta/averta-black-italic.otf"
-          as="font"
-          crossOrigin=""
-        />
-      </Head>
-      <Flex {...styles.wrapper}>
-        <Box {...styles.logo}>
-          <Image src="/images/logo.png" alt="Fight" {...styles.image} />
-        </Box>
-        <Flex {...styles.type}>
-          {!type ? null : type === "fight night" ? (
-            <Box {...styles.fightNight}>
-              <Image
-                src="/images/fight-night.png"
-                alt={type}
-                {...styles.image}
-              />
-            </Box>
-          ) : (
-            <Flex {...styles.ufc}>
-              <ChakraImage
-                src="/images/ufc.png"
-                alt={type}
-                {...styles.ufcImage}
-              />
-              <Text {...styles.ufcNumber}>{type?.replace("ufc ", "")}</Text>
-            </Flex>
-          )}
-        </Flex>
-        <Flex {...styles.content}>{children}</Flex>
-        <Footer />
+const Layout = ({ children, title, type }) => (
+  <>
+    <Head>
+      <title>{title}</title>
+      <link rel="icon" href="/favicon.ico" />
+      <link
+        rel="preload"
+        href="/fonts/averta/averta-black-italic.otf"
+        as="font"
+        crossOrigin=""
+      />
+    </Head>
+    <Flex {...styles.wrapper}>
+      <Box {...styles.logo}>
+        <Image src="/images/logo.png" alt="Fight" {...styles.image} />
+      </Box>
+      <Flex {...styles.type}>
+        {!type ? null : type === "fight night" ? (
+          <Box {...styles.fightNight}>
+            <Image src="/images/fight-night.png" alt={type} {...styles.image} />
+          </Box>
+        ) : (
+          <Flex {...styles.ufc}>
+            <ChakraImage
+              src="/images/ufc.png"
+              alt={type}
+              {...styles.ufcImage}
+            />
+            <Text {...styles.ufcNumber}>{type?.replace("ufc ", "")}</Text>
+          </Flex>
+        )}
       </Flex>
-    </>
-  );
-};
+      <Flex {...styles.content}>{children}</Flex>
+      <Footer type={type} />
+    </Flex>
+  </>
+);
 
 export { Layout };
 

@@ -1,17 +1,19 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
-const Footer = () => (
+const Footer = ({ type }) => (
   <Flex {...styles.wrapper}>
-    <Text {...styles.text}>
-      <a
-        href={process.env.NEXT_PUBLIC_PORTFOLIO}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Coded & designed with ❤️ by Alex.
-      </a>
-    </Text>
+    {type && (
+      <Text {...styles.text}>
+        <a
+          href={process.env.NEXT_PUBLIC_PORTFOLIO}
+          rel="noreferrer"
+          target="_blank"
+        >
+          Coded & designed with ❤️ by Alex.
+        </a>
+      </Text>
+    )}
   </Flex>
 );
 
