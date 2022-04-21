@@ -172,6 +172,9 @@ const getEvents = async (_, res) => {
 
   if (!eventsInDb) {
     const scrapedEvents = await scrapeEvents();
+
+    console.log("SCRAPED EVENETSL ", scrapeEvents);
+
     const events = await handleScrapedEvents(scrapedEvents);
     return res.status(200).json(events);
   }

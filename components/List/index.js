@@ -9,10 +9,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import moment from "moment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Fighter } from "../Fighter";
 
 const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
+  const [bouts, setBouts] = useState(null);
+
   // Scroll card into view
   const handleClick = ({ target }) => {
     // window.scrollTo(0, target.offsetTop - 500);
@@ -23,9 +25,17 @@ const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
     });
   };
 
+  // Remove duplicate or invalid fights from fights array
+  useEffect(() => {
+    if (fights) {
+      const updated = fights.filter(({ weight }) => weight);
+      setBouts(updated);
+    }
+  }, [fights]);
+
   return (
     <Accordion defaultIndex={0} {...styles.accordion}>
-      {fights?.map(
+      {bouts?.map(
         (
           {
             redFighterId,
@@ -47,7 +57,7 @@ const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
           let [blueFirstName, ...blueLastName] = names[1].split(" ");
           blueLastName = blueLastName.join(" ");
 
-          const weightClass = weight.replace(" Bout", "");
+          const weightClass = weight?.replace(" Bout", "");
 
           // UFC Main Cards usually last 3 hours
           // with fight slots divided by 30 minutes each
@@ -155,7 +165,6 @@ const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
                           Expected {formattedApproxStart}
                         </Text>
                       </Flex>
-
                       {/* Blue Fighter */}
                       <Fighter id={blueFighterId} {...blueProps} />
                     </AccordionPanel>

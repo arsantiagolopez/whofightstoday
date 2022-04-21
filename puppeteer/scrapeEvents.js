@@ -76,9 +76,14 @@ const scrapeEvents = async () => {
             ".c-card-event--result__headline > a"
           )?.textContent;
           const names = lastNamesHeadline?.split(" vs ");
+
           // Only give me first last name if fighter has two
-          const redLast = names[0].split(" ")[0];
-          const blueLast = names[1].split(" ")[0];
+          const redLast = names[0].includes(" ")
+            ? names[0].split(" ")[0]
+            : names[0];
+          const blueLast = names[1].includes(" ")
+            ? names[1].split(" ")[0]
+            : names[1];
 
           if (redLast !== "TBD") {
             headline = node

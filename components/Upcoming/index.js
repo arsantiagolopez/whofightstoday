@@ -6,11 +6,14 @@ import { Headshot } from "../Headshot";
 const Upcoming = ({ upcoming }) => {
   const [sortedEvents, setSortedEvents] = useState(null);
 
+  // Remove duplicates and sort by date
   useEffect(() => {
     if (upcoming) {
-      // Sort events by date
-      upcoming.sort((a, b) => new Date(a.startMain) - new Date(b.startMain));
-      setSortedEvents(upcoming);
+      const unique = [
+        ...new Map(upcoming.map((event) => [event["href"], event])).values(),
+      ];
+      unique.sort((a, b) => new Date(a.startMain) - new Date(b.startMain));
+      setSortedEvents(unique);
     }
   }, [upcoming]);
 
@@ -19,35 +22,29 @@ const Upcoming = ({ upcoming }) => {
       <Heading {...styles.heading}>Upcoming</Heading>
 
       <Flex {...styles.list}>
-        {sortedEvents?.map(
-          ({ headline, startMain, location, fights }, index) => {
-            // Get last names of fighters for headline
-            const names = headline.split(" vs ");
-            let [redFirstName, ...redLastName] = names[0].split(" ");
-            redLastName = redLastName.join(" ");
-            let [blueFirstName, ...blueLastName] = names[1].split(" ");
-            blueLastName = blueLastName.join(" ");
+        {sortedEvents?.map(({ headline, startMain, location }, index) => {
+          // Get last names of fighters for headline
+          const names = headline.split(" vs ");
+          const redName = names[0];
+          const blueName = names[1];
 
-            const redProps = { corner: "red", name: names[0] };
-            const blueProps = { corner: "blue", name: names[1] };
+          const redProps = { corner: "red", name: redName };
+          const blueProps = { corner: "blue", name: blueName };
 
-            return (
-              <Flex key={index} {...styles.fight}>
-                <Flex {...styles.headshots}>
-                  <Headshot {...redProps} />
-                  <Headshot {...blueProps} />
-                </Flex>
-                <Text
-                  {...styles.headline}
-                >{`${redLastName} vs ${blueLastName}`}</Text>
-                <Text {...styles.date}>
-                  {moment(startMain).format("ddd. MMM. Do / h:00 A")}
-                </Text>
-                <Text {...styles.location}>{location}</Text>
+          return (
+            <Flex key={index} {...styles.fight}>
+              <Flex {...styles.headshots}>
+                <Headshot {...redProps} />
+                <Headshot {...blueProps} />
               </Flex>
-            );
-          }
-        )}
+              <Text {...styles.headline}>{`${redName} vs ${blueName}`}</Text>
+              <Text {...styles.date}>
+                {moment(startMain).format("ddd. MMM. Do / h:00 A")}
+              </Text>
+              <Text {...styles.location}>{location}</Text>
+            </Flex>
+          );
+        })}
       </Flex>
     </Flex>
   );
