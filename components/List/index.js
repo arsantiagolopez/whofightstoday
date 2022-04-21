@@ -52,9 +52,13 @@ const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
         ) => {
           // Get last names of fighters for headline
           const names = headline.split(" vs ");
-          let [redFirstName, ...redLastName] = names[0].split(" ");
+          let [redFirstName, ...redLastName] = names[0].includes(" ")
+            ? names[0].split(" ")
+            : names[0];
           redLastName = redLastName.join(" ");
-          let [blueFirstName, ...blueLastName] = names[1].split(" ");
+          let [blueFirstName, ...blueLastName] = names[1].includes(" ")
+            ? names[1].split(" ")
+            : names[1];
           blueLastName = blueLastName.join(" ");
 
           const weightClass = weight?.replace(" Bout", "");
