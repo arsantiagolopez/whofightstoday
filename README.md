@@ -4,7 +4,7 @@
     <h4>Like the UFC? Don't know what fights are on this weekend? What if you only care about the main event, but don't know when it starts? Created by a fight lover for fight lovers, Who Fights Today keeps you up to date with upcoming UFC events. Never arrive to a full Buffalo Wild Wings again.</h4>
 </div>
 
-<div align="center" style="padding-bottom: 1em;">
+<div align="center">
     <img src="https://img.shields.io/github/last-commit/arsantiagolopez/preppy?label=updated"/>
     <a href="https://snyk.io/test/github/arsantiagolopez/preppy"><img src="https://snyk.io/test/github/arsantiagolopez/preppy/badge.svg" /></a>
     <a href="https://github.com/arsantiagolopez/whofightstoday/blob/main/LICENSE"><img src="https://img.shields.io/github/license/arsantiagolopez/preppy?color=303030" /></a>
