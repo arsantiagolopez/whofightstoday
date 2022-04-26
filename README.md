@@ -11,12 +11,16 @@
     <img src="https://img.shields.io/github/languages/top/arsantiagolopez/preppy" />
 </div>
 
-<div align="center" style="vertical-align: middle; margin-top: 1em; margin-bottom: 1em;">
+<br>
+
+<div align="center" style="vertical-align: middle;">
 	<a href="https://alexandersantiago.com/"><img src="https://alexandersantiago.com/alex.png" width="24" style="margin-left: -1em;"></img></a>
 	<a href="https://instagram.com/asantilopez"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/instagram_online_social_media_photo-1024.png" width="25"></img></a>
 	<a href="https://twitter.com/arsantiagolopez"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/twitter_online_social_media-512.png" width="25"></img></a>
 	<a href="mailto:arsantiagolopez@gmail.com"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-1024.png" width="25"></img></a>
 </div>
+
+<br>
 
 <p align="center">
   <a href="#preview">Preview</a> •
