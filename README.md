@@ -20,13 +20,13 @@
 <p align="center">
   <a href="#preview">Preview</a> •
   <a href="#features">Features</a> •
-  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#tech">Tech Stack</a> •
   <a href="#inspiration">Inspiration</a> •
   <a href="#license">License</a> •
-  <a href="#contact-me">Contact</a>
+  <a href="#contact">Contact</a>
 </p>
 
-## ⚡ Preview
+<h2 id="preview">⚡ Preview</h2>
 
 <details open>
 <summary>Mobile</summary>
@@ -36,7 +36,7 @@
 <summary>Desktop</summary>
 </details>
 
-## 🎯 Features
+<h2 id="features">🎯 Features</h2>
 
 - This week's UFC card details.
 - Main card and prelims info.
@@ -44,7 +44,7 @@
 - Toggle between decimal or american odds.
 - Upcoming UFC event headlines.
 
-## ‎‍💻 Tech Stack
+<h2 id="tech">‎‍💻 Tech Stack</h2>
 
 ### Client
 
@@ -125,10 +125,10 @@
     </tr>
 </table>
 
-## 💡 Inspiration
+<h2 id="inspiration">💡 Inspiration</h2>
 
-## 📜 License
+<h2 id="license">📜 License</h2>
 
 [![License](https://img.shields.io/github/license/arsantiagolopez/preppy?color=303030)](./LICENSE)
 
-## ☕ Contact me
+<h2 id="contact">☕ Contact me</h2>
