@@ -89,7 +89,7 @@
 <table style="display: inline-table;">
     <tr>
         <th>Tech</th>
-        <th>How is it used</th>
+        <th>What for</th>
     </tr>
     <tr>
         <td><a href="https://nextjs.org/">Next.js SSR</a></td>
@@ -114,7 +114,7 @@
 <table style="display: inline-table;">
     <tr>
         <th>Tech</th>
-        <th>How is it used</th>
+        <th>What for</th>
     </tr>
     <tr>
         <td><a href="https://vercel.com/">Vercel</a></td>
