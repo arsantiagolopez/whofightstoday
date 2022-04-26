@@ -53,32 +53,32 @@
       <th>Tech</th>
       <th>What for</th>
   </tr>
-  <tr style="background: #20232a; color: white;">
-      <td><a href="https://reactjs.org/" style="color: white;">React</a></td>
+  <tr>
+      <td><a href="https://reactjs.org/">React</a></td>
       <td>To build a component based user interface.</td>
   </tr>
-  <tr style="background: black; color: white;">
-      <td><a href="https://nextjs.org/" style="color: white;">Next.js</a></td>
+  <tr>
+      <td><a href="https://nextjs.org/">Next.js</a></td>
       <td>Server side rendering (SSR) of React components.</td>
   </tr>
-  <tr style="background: #40b5a4; color: white;">
-      <td><a href="https://pptr.dev/" style="color: white;">Puppeteer</img></a></td>
+  <tr>
+      <td><a href="https://pptr.dev/">Puppeteer</img></a></td>
       <td>Scrapes & parses data from other websites.</td>
   </tr>
-  <tr style="background: #303030; color: white;">
-      <td><a href="https://swr.vercel.app/" style="color: white;">SWR</a></td>
+  <tr>
+      <td><a href="https://swr.vercel.app/">SWR</a></td>
       <td>Cache & data fetching.</td>
   </tr>
-  <tr style="background: white;">
-      <td><a href="https://axios-http.com/docs/intro" style="color: #303030;">Axios</a></td>
+  <tr>
+      <td><a href="https://axios-http.com/docs/intro" >Axios</a></td>
       <td>Fetch data with promise based HTTP requests.</td>
   </tr>
-  <tr style="background: #303030; color: white;">
-      <td><a href="https://momentjs.com/" style="color: white;">Moment.js</a></td>
+  <tr>
+      <td><a href="https://momentjs.com/">Moment.js</a></td>
       <td>Parse & display dates.</td>
   </tr>
-  <tr style="background: #4ED1C5; color: white;">
-      <td><a href="https://chakra-ui.com/" style="color: white;">Chakra UI</td>
+  <tr>
+      <td><a href="https://chakra-ui.com/">Chakra UI</td>
       <td>Quickly build beautiful UI components.</td>
   </tr>
 </table>
@@ -90,16 +90,16 @@
         <th>Tech</th>
         <th>How is it used</th>
     </tr>
-    <tr style="background: black; color: white;">
-        <td><a href="https://nextjs.org/" style="color: white;">Next.js SSR</a></td>
+    <tr>
+        <td><a href="https://nextjs.org/">Next.js SSR</a></td>
         <td>Next.js API data fetching.</td>
     </tr>
-    <tr style="background: #47A248; color: white;">
-        <td><a href="https://www.mongodb.com/" style="color: white;">MongoDB</a></td>
+    <tr>
+        <td><a href="https://www.mongodb.com/">MongoDB</a></td>
         <td>NoSQL document based database.</td>
     </tr>
-    <tr style="background: #ff5000; color: white;">
-        <td><a href="https://www.mongoose.com/" style="color: white;">Mongoose</a></td>
+    <tr>
+        <td><a href="https://www.mongoose.com/">Mongoose</a></td>
         <td>Used to interact with the database.</td>
     </tr>
     <tr>
@@ -115,12 +115,12 @@
         <th>Tech</th>
         <th>How is it used</th>
     </tr>
-    <tr style="background: black; color: white;">
-        <td><a href="https://vercel.com/" style="color: white;">Vercel</a></td>
+    <tr>
+        <td><a href="https://vercel.com/">Vercel</a></td>
         <td>Deploy, scale, and server the web application.</td>
     </tr>
-    <tr style="background: #3b3c38; color: white;">
-        <td><a href="https://babeljs.io/" style="color: white;">Babel</a></td>
+    <tr>
+        <td><a href="https://babeljs.io/">Babel</a></td>
         <td>Compile newer versions of JS to vanilla JS.</td>
     </tr>
 </table>
