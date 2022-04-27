@@ -5,10 +5,10 @@
 </div>
 
 <div align="center">
-    <img src="https://img.shields.io/github/last-commit/arsantiagolopez/preppy?label=updated"/>
-    <a href="https://snyk.io/test/github/arsantiagolopez/preppy"><img src="https://snyk.io/test/github/arsantiagolopez/preppy/badge.svg" /></a>
-    <a href="https://github.com/arsantiagolopez/whofightstoday/blob/main/LICENSE"><img src="https://img.shields.io/github/license/arsantiagolopez/preppy?color=303030" /></a>
-    <img src="https://img.shields.io/github/languages/top/arsantiagolopez/preppy" />
+    <img src="https://img.shields.io/github/last-commit/arsantiagolopez/whofightstoday?label=updated"/>
+    <a href="https://snyk.io/test/github/arsantiagolopez/whofightstoday"><img src="https://snyk.io/test/github/arsantiagolopez/whofightstoday/badge.svg" /></a>
+    <a href="https://github.com/arsantiagolopez/whofightstoday/blob/main/LICENSE"><img src="https://img.shields.io/github/license/arsantiagolopez/whofightstoday?color=303030" /></a>
+    <img src="https://img.shields.io/github/languages/top/arsantiagolopez/whofightstoday" />
 </div>
 
 <div align="center" style="vertical-align: middle;">
@@ -130,7 +130,7 @@
 
 <h2 id="license">📜 License</h2>
 
-[![License](https://img.shields.io/github/license/arsantiagolopez/preppy?color=303030)](./LICENSE)
+[![License](https://img.shields.io/github/license/arsantiagolopez/whofightstoday?color=303030)](./LICENSE)
 
 <h2 id="contact">☕ Contact me</h2>
 
