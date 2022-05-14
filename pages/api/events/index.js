@@ -4,34 +4,6 @@ import { dbConnect } from "../../../utils/dbConnect";
 import { getDates } from "../../../utils/getDates";
 
 /**
- * Clean up past events.
- */
-const cleanUpEvents = async () => {
-  const { startOfWeek, endOfWeek } = getDates();
-
-  try {
-    // Delete all events from last week,
-    // OR events that were updated more than a week ago.
-    return await Event.deleteMany({
-      $or: [
-        {
-          startMain: {
-            $lt: startOfWeek.toDate(),
-          },
-        },
-        {
-          updatedAt: {
-            $lt: startOfWeek.toDate(),
-          },
-        },
-      ],
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-/**
  * Fetch events in the current week.
  * UFC might change fighters the day of, but main events,
  * dates and venues tend not to change.
@@ -139,7 +111,7 @@ const handleScrapedEvents = async (events) => {
         // Create fight if not in database
         const fightProps = {
           headline,
-          eventId: event._id,
+          eventId: event?._id,
           redFighterId: redFighter._id,
           blueFighterId: blueFighter._id,
         };
@@ -151,7 +123,7 @@ const handleScrapedEvents = async (events) => {
         // Relate fight back to event for future queries
         // & return updated event
         return await Event.findOneAndUpdate(
-          { _id: event._id },
+          { _id: event?._id },
           { fights: [fight._id] }
         );
       }
@@ -172,9 +144,6 @@ const getEvents = async (_, res) => {
 
   if (!eventsInDb) {
     const scrapedEvents = await scrapeEvents();
-
-    console.log("SCRAPED EVENETSL ", scrapeEvents);
-
     const events = await handleScrapedEvents(scrapedEvents);
     return res.status(200).json(events);
   }

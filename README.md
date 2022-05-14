@@ -6,7 +6,6 @@
 
 <div align="center">
     <img src="https://img.shields.io/github/last-commit/arsantiagolopez/whofightstoday?label=updated"/>
-    <a href="https://snyk.io/test/github/arsantiagolopez/whofightstoday"><img src="https://snyk.io/test/github/arsantiagolopez/whofightstoday/badge.svg" /></a>
     <a href="https://github.com/arsantiagolopez/whofightstoday/blob/main/LICENSE"><img src="https://img.shields.io/github/license/arsantiagolopez/whofightstoday?color=303030" /></a>
     <img src="https://img.shields.io/github/languages/top/arsantiagolopez/whofightstoday" />
 </div>
@@ -18,32 +17,33 @@
 	<a href="mailto:arsantiagolopez@gmail.com"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-1024.png" width="25" /></a>
 </div>
 
-<p align="center">
+<div align="center">
   <a href="#preview">Preview</a> •
   <a href="#features">Features</a> •
   <a href="#tech">Tech Stack</a> •
-  <a href="#inspiration">Inspiration</a> •
+ <a href="#inspiration">Inspiration</a> •
+  <a href="#objectives">Learning</a> •
   <a href="#license">License</a> •
   <a href="#contact">Contact</a>
-</p>
+</div>
 
 <h2 id="preview">⚡ Preview</h2>
 
 <details open>
-<summary>Mobile</summary>
+    <summary>Mobile</summary>
 </details>
 
 <details>
-<summary>Desktop</summary>
+    <summary>Desktop</summary>
 </details>
 
 <h2 id="features">🎯 Features</h2>
 
-- This week's UFC card details.
-- Main card and prelims info.
-- Get expected times for every fight on the card.
-- Toggle between decimal or american odds.
-- Upcoming UFC event headlines.
+- Get this week's UFC card details.
+- Main card and prelims include information on every individual fight.
+- Get expected starting time for every fight.
+- Toggle between decimal or american moneyline odds.
+- Preview upcoming UFC event headlines.
 
 <h2 id="tech">‎‍💻 Tech Stack</h2>
 

@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import { getBrowserInstance } from "./getBrowserInstance";
 
 /**
  * Scrape the official UFC site for a specific card.
@@ -9,7 +9,7 @@ const scrapeCard = async (href) => {
   const url = `https://ufc.com/event/${href}`;
 
   try {
-    const browser = await puppeteer.launch();
+    const browser = await getBrowserInstance();
     const page = await browser.newPage();
 
     // Set default timeout to infinite: page will load

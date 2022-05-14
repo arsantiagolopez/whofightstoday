@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import { getBrowserInstance } from "./getBrowserInstance";
 
 /**
  * Fallback function in case fighter is missing a picture.
@@ -14,7 +14,7 @@ const scrapeFighterImages = async (fighter) => {
   const lastName = names.length > 1 ? names[1] : names[0];
 
   try {
-    const browser = await puppeteer.launch();
+    const browser = await getBrowserInstance();
     const page = await browser.newPage();
 
     // Set default timeout to infinite: page will load
