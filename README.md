@@ -128,8 +128,6 @@
 
 <h2 id="inspiration">💡 Inspiration</h2>
 
-<h2 id="license">📜 License</h2>
-
 I'm an avid fight fan. Unfortunately, there isn't a product in the market that could bundle together the information that I want on the go.
 
 The official UFC site is resource expensive, it's super slow at times, and I have to click a few times to see what fights are on this weekend. WhoFightsToday goes straight to the point and shows you the main event on the landing page. You can also toggle between the main card and prelims, and get preloaded fights instantly.
@@ -138,11 +136,19 @@ For days that I'm busy, or I'm simply trying to catch specific fights, I wish th
 
 There's also support for both decimal and american odds on WhoFightsToday, whereas only american odds are displayed on the official UFC site.
 
-## 📜 License
+<h2 id="learning">💡 Learning Objectives</h2>
+
+- Get toes wet with javascript testing & automation with Puppeteer.
+- Master CSS and XPath selectors.
+- Familiarize more with the DOM.
+- Build beautiful, minimal design components.
+- Attempt to deploy puppeteer with serverless lambda functions. Impossible with free plans, attempt an integration on future paid projects.
+
+<h2 id="license">📜 License</h2>
 
 [![License](https://img.shields.io/github/license/arsantiagolopez/whofightstoday?color=303030)](./LICENSE)
 
-## ☕ Contact me
+<h2 id="contact">☕ Contact me</h2>
 
 <div align="left">
 	<a href="https://alexandersantiago.com/"><img src="https://alexandersantiago.com/alex.png" width="40" /></a>

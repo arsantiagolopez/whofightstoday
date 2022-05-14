@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getBrowserInstance } from "./getBrowserInstance";
+import puppeteer from "puppeteer";
 
 /**
  * Scrape the official UFC site for upcoming events.
@@ -9,7 +9,7 @@ const scrapeEvents = async () => {
   const url = "https://www.ufc.com/events";
 
   try {
-    const browser = await getBrowserInstance();
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     // Set default timeout to infinite: page will load
