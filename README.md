@@ -136,7 +136,7 @@ For days that I'm busy, or I'm simply trying to catch specific fights, I wish th
 
 There's also support for both decimal and american odds on WhoFightsToday, whereas only american odds are displayed on the official UFC site.
 
-<h2 id="learning">💡 Learning Objectives</h2>
+<h2 id="objectives">💡 Learning Objectives</h2>
 
 - Get toes wet with javascript testing & automation with Puppeteer.
 - Master CSS and XPath selectors.
