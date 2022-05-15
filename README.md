@@ -133,8 +133,6 @@
     </tr>
 </table>
 
-<br>
-
 <h2 id="inspiration">💡 Inspiration</h2>
 
 I'm an avid fight fan. Unfortunately, there isn't a product in the market that could bundle together the information that I want on the go.
