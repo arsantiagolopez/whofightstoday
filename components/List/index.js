@@ -153,17 +153,17 @@ const List = ({ fights, activeOdds, setActiveOdds, startMain }) => {
                       <Flex {...styles.centerSection}>
                         <Text {...styles.weight}>{weightClass}</Text>
                         <Flex>
-                          <Heading
-                            {...styles.name}
-                          >{`${redFirstName} ${redLastName}`}</Heading>
-                          <Text {...styles.panelRanking}>{redRanking}</Text>
+                          <Heading {...styles.name}>
+                            {`${redFirstName} ${redLastName}`}
+                            <Text {...styles.panelRanking}>{redRanking}</Text>
+                          </Heading>
                         </Flex>
                         <Image {...styles.vs} />
                         <Flex>
-                          <Heading
-                            {...styles.name}
-                          >{`${blueFirstName} ${blueLastName}`}</Heading>
-                          <Text {...styles.panelRanking}>{blueRanking}</Text>
+                          <Heading {...styles.name}>
+                            {`${blueFirstName} ${blueLastName}`}
+                            <Text {...styles.panelRanking}>{blueRanking}</Text>
+                          </Heading>
                         </Flex>
                         <Text {...styles.approxStart}>
                           Expected {formattedApproxStart}
@@ -251,6 +251,7 @@ const styles = {
     marginBottom: "0",
     marginLeft: "0.5",
     fontFamily: "Averta",
+    display: "inline",
   },
   panel: {
     position: "relative",

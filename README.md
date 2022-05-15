@@ -31,10 +31,12 @@
 
 <details open>
     <summary>Mobile</summary>
+    ![Mobile preview](./public/documentation/mobile.gif)
 </details>
 
 <details>
     <summary>Desktop</summary>
+    ![Desktop preview](./public/documentation/desktop.gif)
 </details>
 
 <h2 id="features">🎯 Features</h2>
