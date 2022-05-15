@@ -19,6 +19,8 @@
 	<a href="mailto:arsantiagolopez@gmail.com"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-1024.png" width="25" /></a>
 </div>
 
+<br />
+
 <div align="center">
   <a href="#preview">Preview</a> •
   <a href="#features">Features</a> •
