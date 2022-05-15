@@ -10,6 +10,8 @@
     <img src="https://img.shields.io/github/languages/top/arsantiagolopez/whofightstoday" />
 </div>
 
+<br />
+
 <div align="center">
 	<a href="https://alexandersantiago.com/"><img src="https://alexandersantiago.com/alex.png" width="24" style="margin-left: -1em;" /></a>
 	<a href="https://instagram.com/asantilopez"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/instagram_online_social_media_photo-1024.png" width="25" /></a>
