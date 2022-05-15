@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/github/languages/top/arsantiagolopez/whofightstoday" />
 </div>
 
-<br />
+<br>
 
 <div align="center">
 	<a href="https://alexandersantiago.com/"><img src="https://alexandersantiago.com/alex.png" width="24" style="margin-left: -1em;" /></a>
@@ -19,7 +19,7 @@
 	<a href="mailto:arsantiagolopez@gmail.com"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-1024.png" width="25" /></a>
 </div>
 
-<br />
+<br>
 
 <div align="center">
   <a href="#preview">Preview</a> •
@@ -31,7 +31,7 @@
   <a href="#contact">Contact</a>
 </div>
 
-<br />
+<br>
 
 <h2 id="preview">⚡ Preview</h2>
 
@@ -44,7 +44,7 @@
     <img src="https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/desktop.gif" />
 </details>
 
-<br />
+<br>
 
 <h2 id="features">🎯 Features</h2>
 
@@ -54,7 +54,7 @@
 - Toggle between decimal or american moneyline odds.
 - Preview upcoming UFC event headlines.
 
-<br />
+<br>
 
 <h2 id="tech">‎‍💻 Tech Stack</h2>
 
@@ -137,7 +137,7 @@
     </tr>
 </table>
 
-<br />
+<br>
 
 <h2 id="inspiration">💡 Inspiration</h2>
 
@@ -149,7 +149,7 @@ For days that I'm busy, or I'm simply trying to catch specific fights, I wish th
 
 There's also support for both decimal and american odds on WhoFightsToday, whereas only american odds are displayed on the official UFC site.
 
-<br />
+<br>
 
 <h2 id="objectives">💡 Learning Objectives</h2>
 
@@ -159,13 +159,13 @@ There's also support for both decimal and american odds on WhoFightsToday, where
 - Build beautiful, minimal design components.
 - Attempt to deploy puppeteer with serverless lambda functions. Impossible with free plans, attempt an integration on future paid projects.
 
-<br />
+<br>
 
 <h2 id="license">📜 License</h2>
 
 [![License](https://img.shields.io/github/license/arsantiagolopez/whofightstoday?color=303030)](./LICENSE)
 
-<br />
+<br>
 
 <h2 id="contact">☕ Contact me</h2>
 
