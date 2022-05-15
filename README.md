@@ -27,6 +27,8 @@
   <a href="#contact">Contact</a>
 </div>
 
+<br />
+
 <h2 id="preview">⚡ Preview</h2>
 
 <details open>
@@ -38,6 +40,8 @@
     <img src="https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/desktop.gif" />
 </details>
 
+<br />
+
 <h2 id="features">🎯 Features</h2>
 
 - Get this week's UFC card details.
@@ -45,6 +49,8 @@
 - Get expected starting time for every fight.
 - Toggle between decimal or american moneyline odds.
 - Preview upcoming UFC event headlines.
+
+<br />
 
 <h2 id="tech">‎‍💻 Tech Stack</h2>
 
@@ -127,6 +133,8 @@
     </tr>
 </table>
 
+<br />
+
 <h2 id="inspiration">💡 Inspiration</h2>
 
 I'm an avid fight fan. Unfortunately, there isn't a product in the market that could bundle together the information that I want on the go.
@@ -137,6 +145,8 @@ For days that I'm busy, or I'm simply trying to catch specific fights, I wish th
 
 There's also support for both decimal and american odds on WhoFightsToday, whereas only american odds are displayed on the official UFC site.
 
+<br />
+
 <h2 id="objectives">💡 Learning Objectives</h2>
 
 - Get toes wet with javascript testing & automation with Puppeteer.
@@ -145,9 +155,13 @@ There's also support for both decimal and american odds on WhoFightsToday, where
 - Build beautiful, minimal design components.
 - Attempt to deploy puppeteer with serverless lambda functions. Impossible with free plans, attempt an integration on future paid projects.
 
+<br />
+
 <h2 id="license">📜 License</h2>
 
 [![License](https://img.shields.io/github/license/arsantiagolopez/whofightstoday?color=303030)](./LICENSE)
+
+<br />
 
 <h2 id="contact">☕ Contact me</h2>
 
