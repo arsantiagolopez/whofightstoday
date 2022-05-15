@@ -31,12 +31,13 @@
 
 <details open>
     <summary>Mobile</summary>
-    ![Mobile preview](https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/mobile.gif)
+    <img src="https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/mobile.gif" />
 </details>
 
 <details>
     <summary>Desktop</summary>
-    ![Desktop preview](https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/desktop.gif)
+    <img src="https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/desktop.gif" />
+    
 </details>
 
 <h2 id="features">🎯 Features</h2>
