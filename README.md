@@ -30,14 +30,12 @@
 <h2 id="preview">⚡ Preview</h2>
 
 <details open>
-    <summary>Mobile</summary>
-    <p>&nbsp;</p>
+    <summary><h3>Mobile</h3></summary>
     <img src="https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/mobile.gif" />
 </details>
 
 <details>
-    <summary>Desktop</summary>
-    <p>&nbsp;</p>
+    <summary><h3>Desktop</h3></summary>
     <img src="https://github.com/arsantiagolopez/gifs/blob/main/whofightstoday/desktop.gif" />
 </details>
 
