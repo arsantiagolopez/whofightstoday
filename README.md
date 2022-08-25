@@ -1,7 +1,7 @@
 <div align="center">
     <img src="https://i.ibb.co/TtySWQ6/logo.png" />
     <a href="https://whofights.today" style="color: #303030;"><h1>Who Fights Today</h1></a>
-    <h4>Display this week's UFC card. Event details, bouts and upcoming events. Every fight on the main card and prelims displayed with the fight's expected time, odds, and further info.</h4>
+    <h4>Display this week's UFC card—event details, bouts and upcoming events. Every fight on the main card and prelims is displayed, including the fight's expected time, odds, and additional information.</h4>
 </div>
 
 <div align="center">
@@ -49,7 +49,7 @@
 - Get this week's UFC card details.
 - Main card and prelims include information on every individual fight.
 - Get expected starting time for every fight.
-- Toggle between decimal or american moneyline odds.
+- Toggle between decimal or American moneyline odds.
 - Preview upcoming UFC event headlines.
 
 <h2 id="tech">‎‍💻 Tech Stack</h2>
@@ -63,11 +63,11 @@
   </tr>
   <tr>
       <td><a href="https://reactjs.org/">React</a></td>
-      <td>To build a component based user interface.</td>
+      <td>Build a component based user interface.</td>
   </tr>
   <tr>
       <td><a href="https://nextjs.org/">Next.js</a></td>
-      <td>Server side rendering (SSR) of React components.</td>
+      <td>Server-side rendering (SSR) of React components.</td>
   </tr>
   <tr>
       <td><a href="https://pptr.dev/">Puppeteer</a></td>
@@ -79,7 +79,8 @@
   </tr>
   <tr>
       <td><a href="https://axios-http.com/docs/intro">Axios</a></td>
-      <td>Fetch data with promise based HTTP requests.</td>
+      <td>Fetch data with promise-based HTTP requests.
+</td>
   </tr>
   <tr>
       <td><a href="https://momentjs.com/">Moment.js</a></td>
@@ -135,21 +136,21 @@
 
 <h2 id="inspiration">💡 Inspiration</h2>
 
-I'm an avid fight fan. Unfortunately, there isn't a product in the market that could bundle together the information that I want on the go.
+I'm an avid fight fan. Unfortunately, there isn't a product on the market that bundles together the information that I want on the go.
 
-The official UFC site is resource expensive, it's super slow at times, and I have to click a few times to see what fights are on this weekend. WhoFightsToday goes straight to the point and shows you the main event on the landing page. You can also toggle between the main card and prelims, and get preloaded fights instantly.
+The official UFC site is resource expensive, frequently slow and requires multiple steps to showcase which fights are on each weekend. WhoFightsToday goes straight to the point and clearly displays the main event on the landing page. You also have the ability to toggle between the main card and prelims and get preloaded fights instantly.
 
-For days that I'm busy, or I'm simply trying to catch specific fights, I wish there was something out there that told me the approximate time the fight is due to take place. The UFC has a start time for the prelims, and main card, but no approximate time per fight. WhoFightsToday does.
+On days that I'm busy or simply trying to catch specific fights, readily-available approximate fight times would be ideal. The UFC has a start time for the prelims and main card, but no approximate time per fight. WhoFightsToday does.
 
-There's also support for both decimal and american odds on WhoFightsToday, whereas only american odds are displayed on the official UFC site.
+Additional, there's support for both decimal and American odds on WhoFightsToday, whereas only American odds are displayed on the official UFC site.
 
 <h2 id="objectives">💡 Learning Objectives</h2>
 
-- Get toes wet with javascript testing & automation with Puppeteer.
+- Practice javascript testing & automation with Puppeteer.
 - Master CSS and XPath selectors.
-- Familiarize more with the DOM.
+- Get familiar with the DOM.
 - Build beautiful, minimal design components.
-- Attempt to deploy puppeteer with serverless lambda functions. Impossible with free plans, attempt an integration on future paid projects.
+- Attempt to deploy Puppeteer with serverless lambda functions. Impossible with free plans, will attempt an integration on future paid projects.
 
 <h2 id="license">📜 License</h2>
 
